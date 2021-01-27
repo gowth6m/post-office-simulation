@@ -17,7 +17,7 @@ int random_number(int min_num, int max_num)
         hi_num = min_num;
     }
 
-    // srand(time(NULL));
+    srand(time(NULL));
     result = (rand() % (hi_num - low_num)) + low_num;
     return result;
 }

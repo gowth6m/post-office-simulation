@@ -44,5 +44,7 @@ bool inputCheck(int argc, char const *argv[]) {
 
 int main(int argc, char const *argv[])
 {
+    runSimulation(10, 1, 60);
+
 
 }
