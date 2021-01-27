@@ -3,13 +3,15 @@
 #include "randGenerator.c"
 #include "customerQueue.c"
 
-int unfulfilledCustomer = 0;
+int fulfilledCustomers = 0;
+int unfulfilledCustomers = 0;
+int timedOutCustomers = 0;
 
 // Function to add random number of customers to the queue
 void addCustomers(struct Queue* customerQueue, int timer) 
 {
     // int noOfCustomers = random_number(10,20);
-    int noOfCustomers = 1;
+    int noOfCustomers = 5;
 
     for(int i=0; i < noOfCustomers; i++) 
     {
@@ -31,7 +33,9 @@ void customerWaitToleranceManager(struct Queue* customerQueue, int timer)
         if(customerQueue->front->waitingToleranceLimit <= customerQueue->front->timeSpentInQueue) 
         {
             // remove from queue if tolerance exceeds the limit
-            printf("=======> TIME LIMIT EXCEED :( \n");
+            deQueue(customerQueue);
+            timedOutCustomers++;
+            unfulfilledCustomers++;
         }
     }
 }
@@ -53,11 +57,14 @@ void serveCustomer(struct Queue* customerQueue, int servicePointArr[], int numSe
                 printf("        * finishing time: %d\n", finishServingTime);
                 printf("        * removing customer: %d\n", customerQueue->front->key);
                 deQueue(customerQueue); // remove the customer from queue
+                fulfilledCustomers++;
             }
         }
         // Free up the service point when the time point is reached
-        if (servicePointArr[i] == timer) {  // if equal to timer clock then release
+        if (servicePointArr[i] == timer) // if equal to timer clock then release
+        { 
             servicePointArr[i] = 0;
+            unfulfilledCustomers++;
             printf(" >> SERVICE POINT IS FREEE >>\n");
         }
     }
@@ -80,9 +87,7 @@ void loopForManagingCustomers(int closingTime, int customerSpawnInterval, struct
         // Adding random number of customers every interval
         if(counter == customerSpawnInterval) 
         {
-            // printf(">>>>>>>> adding customers to queue\n");
-            // addCustomers(customerQueue, timer);
-            // printf(">>>>>>>>>>>>>>>>>>>>>>>> length of queue: %d\n", customerQueue->queueLength);
+            addCustomers(customerQueue, timer);
             counter = 0;    
         }
         counter++;
@@ -101,11 +106,13 @@ void runSimulation(int maxQueueLength, int numServicePoints, int closingTime)
     // queue, key, waitTolerance, serveTime, timeAdded
     enQueue(customerQueue, 0, 50, 10, closingTime);
     enQueue(customerQueue, 1, 50, 10, closingTime);
-    enQueue(customerQueue, 2, 50, 10, closingTime);
+    enQueue(customerQueue, 2, 20, 20, closingTime);
     enQueue(customerQueue, 3, 50, 10, closingTime);
-    // printf("%d\n", customerQueue->front->timeAddedToQueue);
-    // printf("\n");
 
-    loopForManagingCustomers(closingTime, 30, customerQueue, servicePointArr, numServicePoints);
+    loopForManagingCustomers(closingTime, 20, customerQueue, servicePointArr, numServicePoints);
+    unfulfilledCustomers += customerQueue->queueLength;
     printf("Queue Length : %d\n", customerQueue->queueLength); 
+    printf("Unfulfilled Customers : %d\n", unfulfilledCustomers); 
+    printf("Fulfilled Customers : %d\n", fulfilledCustomers); 
+    printf("Timed-out Customers : %d\n", fulfilledCustomers); 
 }

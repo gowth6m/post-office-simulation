@@ -23,6 +23,36 @@ bool inputCheck(int argc, char const *argv[]) {
 int main(int argc, char const *argv[])
 {
     runSimulation(10, 1, 80);
-
-    
 }
+
+// --------------------------------------------------------
+// What happens when its near finish time and the time taken to 
+// serve customer exceed fisnish time?
+
+// On the spec it says that the customer will become timed-out customer
+// does that mean just remove them?
+
+// --------------------------------------------------------
+// TASKS TO IMPLEMENT:
+// -- Implement max limit for queue
+// -- Added to unsatistfied customer if max queue
+// -- Implement file reader
+// -- Implement file writer
+
+// --------------------------------------------------------
+// EXAMPLE OUT FOR FILE:
+// 
+// - PER CLOCK CYCLE:
+//      * Time inverval number (im guessing this is like a clock)
+//      * Number of customers currently being served (check servicePointArr 
+//          - if > 0 then the point is being served - maybe forloop it)
+//      * Number of people currently in the queue 
+//          - use customerQueue->queueLength
+//      * Numbers of fulfilled - use the global fulfilledCustomers
+//      * Number of unfulfilled - use the global unfulfilledCustomers
+//      * Number of timed-out customers so far - use timedOutCustomers
+// 
+// - Marker showing when closing time has been reached.
+// - The time it takes from closing time until all remaining customers have been served.
+// - The average waiting time for fulfilled customers over the whole simulation 
+//      (i.e. the number of time intervals they spend in the queue).
