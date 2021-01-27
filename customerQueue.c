@@ -9,6 +9,7 @@ struct CustomerNode {
     int timeSpentInQueue; // time spent waiting in the queue
     int waitingToleranceLimit; // max time the customer waits before leaving queue
     int timeTakenToServe; // time it takes to serve a customer
+    int timeAddedToQueue; // time at which the customer was added to the queue
     struct CustomerNode* next; // pointer to next node/customer in queue
 }; 
   
@@ -19,13 +20,14 @@ struct Queue {
 }; 
  
 // A utility function to create a new linked list node. 
-struct CustomerNode* newNode(int k, int waitTolerance, int serveTime) 
+struct CustomerNode* newNode(int k, int waitTolerance, int serveTime, int timeAdded) 
 { 
     struct CustomerNode* temp = (struct CustomerNode*)malloc(sizeof(struct CustomerNode)); 
     temp->key = k; 
     temp->waitingToleranceLimit = waitTolerance;
     temp->timeTakenToServe = serveTime;
-    temp->timeSpentInQueue = 0;
+    temp->timeAddedToQueue = timeAdded;
+    temp->timeSpentInQueue = 0; // How can I increase this?
     temp->next = NULL; 
     return temp; 
 } 
@@ -35,49 +37,47 @@ struct Queue* createQueue()
 { 
     struct Queue* q = (struct Queue*)malloc(sizeof(struct Queue)); 
     q->front = q->rear = NULL; 
-    q->queueLength = 1;
+    q->queueLength = 0;
     return q; 
 }
   
 // The function to add a key k to q 
-void enQueue(struct Queue* q, int k, int waitTolerance, int serveTime) 
+void enQueue(struct Queue* q, int k, int waitTolerance, int serveTime, int timeAdded) 
 { 
+    // Increase queue length
+    q->queueLength++;
     // Create a new LL node 
-    struct CustomerNode* temp = newNode(k, waitTolerance, serveTime); 
-  
+    struct CustomerNode* temp = newNode(k, waitTolerance, serveTime, timeAdded); 
+    
     // If queue is empty, then new node is front and rear both 
     if (q->rear == NULL) { 
         q->front = q->rear = temp; 
         return; 
     } 
 
-    // Checking if max queue lenght is exceeded
-  
     // Add the new node at the end of queue and change rear 
     q->rear->next = temp; 
     q->rear = temp; 
-    q->queueLength++;
 } 
   
 // Function to remove a key from given queue q 
 void deQueue(struct Queue* q) 
-{ 
+{   
+    // Decrease queue length
+    q->queueLength--;
     // If queue is empty, return NULL. 
     if (q->front == NULL) 
         return; 
-  
+
     // Store previous front and move front one node ahead 
     struct CustomerNode* temp = q->front; 
-  
     q->front = q->front->next; 
   
     // If front becomes NULL, then change rear also as NULL 
     if (q->front == NULL) 
         q->rear = NULL; 
   
-    free(temp);
-
-    q->queueLength--;
+    free(temp); // Free allocated memory for the node
 }
 
 // int main(int argc, char const *argv[])
