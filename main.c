@@ -4,7 +4,6 @@
 #include <stdbool.h>
 #include <string.h>
 #include "simulation.c"
-#include "fileManager.c"
 
 // Define settings for simulation to adjust
 int minServeTime = 5;
@@ -13,8 +12,7 @@ int minToleranceTime = 20;
 int maxToleranceTime = 50;
 int minNoOfCustomerAdded = 10;
 int maxNoOfCustomerAdded = 50;
-int customerSpawnInterval = 10;
-
+int customerSpawnInterval = 100;
 
 bool inputCheck(int argc, char const *argv[]) {
     for (int i = 0; i<argc; i++) {
@@ -31,9 +29,11 @@ bool inputCheck(int argc, char const *argv[]) {
 
 int main(int argc, char const *argv[])
 {
-    multiSimulation(1, -1, 1, 100);
+    startSimulation("test_write.txt");
 
-}
+
+}  
+    
 
 // --------------------------------------------------------
 // What happens when its near finish time and the time taken to 

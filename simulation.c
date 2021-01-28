@@ -2,6 +2,7 @@
 #include <stdlib.h> 
 #include "randGenerator.c"
 #include "customerQueue.c"
+#include "fileManager.c"
 
 // Declare settings for simulation to adjust
 extern int minServeTime;
@@ -11,6 +12,12 @@ extern int maxToleranceTime;
 extern int minNoOfCustomerAdded;
 extern int maxNoOfCustomerAdded;
 extern int customerSpawnInterval;
+
+// Pointer to write file
+FILE *fpWrite;
+
+// Check if multi-sim
+bool isMultiSim = false;
 
 // Globals for tracking
 int fulfilledCustomers = 0;
@@ -93,6 +100,15 @@ void loopForManagingCustomers(int closingTime, int customerSpawnInterval, struct
         customerWaitToleranceManager(queue, timer);
 
         printf("CLOCK : %d\n", timer);
+        if(isMultiSim == false) 
+        { 
+            writeToFile("CLOCK: ", timer, fpWrite); 
+            // writeToFile("   Number of customer being served: ", timer, fpWrite);
+            writeToFile("   Number of people in queue: ", queue->length, fpWrite);
+            writeToFile("   Number of fulfilled customers: ", fulfilledCustomers, fpWrite);
+            writeToFile("   Number of unfulfilled customers: ", unfulfilledCustomers, fpWrite);
+            writeToFile("   Number of timed-out customers: ", timedOutCustomers, fpWrite);
+        }
         // Serving the first customer in the customer queue
         serveCustomer(queue, servicePointArr, numServicePoints, timer);
 
@@ -107,7 +123,7 @@ void loopForManagingCustomers(int closingTime, int customerSpawnInterval, struct
 }
 
 // Function to run one simulation of the post office system
-void runSimulation(int maxQueLen, int numServicePoints, int closingTime) 
+void simulation(int maxQueLen, int numServicePoints, int closingTime) 
 {
     int servicePointArr[numServicePoints];
 
@@ -129,13 +145,16 @@ void runSimulation(int maxQueLen, int numServicePoints, int closingTime)
 // Function that runs multiple simulations
 void multiSimulation(int numSim, int maxQueLen, int numServicePoints, int closingTime) 
 {
-    for(int i = 0; i < numSim; i++)
-    {
-        runSimulation(maxQueLen, numServicePoints, closingTime);
-    }
-
     if(numSim > 1)
-    {   // Calculating average before finding averageFulfilled in order to find average
+    {
+        isMultiSim = true;
+
+        for(int i = 0; i < numSim; i++)
+        {
+        simulation(maxQueLen, numServicePoints, closingTime);
+        }
+
+        // Calculating average before finding averageFulfilled in order to find average
         int averageTimeSpentInQueForFulfilledCus = totalTimeSpentInQueAllFulfillCus/fulfilledCustomers;
         unfulfilledCustomers = unfulfilledCustomers/numSim;
         fulfilledCustomers = fulfilledCustomers/numSim;
@@ -145,15 +164,36 @@ void multiSimulation(int numSim, int maxQueLen, int numServicePoints, int closin
         printf("Unfulfilled Customers : %d\n", unfulfilledCustomers); 
         printf("Fulfilled Customers : %d\n", fulfilledCustomers); 
         printf("Timed-out Customers : %d\n", timedOutCustomers); 
+        writeToFile(">>>> MULTI-SIM STATS >>>: ", 0, fpWrite);
+        writeToFile("List of parameter read in: goes here", 0, fpWrite);
+        writeToFile("   Average number of fulfilled customers: ", fulfilledCustomers, fpWrite);
+        writeToFile("   Average number of unfulfilled customers: ", unfulfilledCustomers, fpWrite);
+        writeToFile("   Average number of timed-out customers: ", timedOutCustomers, fpWrite);
+        writeToFile("   Average waiting time for fulffilled customer: ", averageTimeSpentInQueForFulfilledCus, fpWrite);
     }
     else 
-    {
+    {   
+        for(int i = 0; i < numSim; i++)
+        {
+        simulation(maxQueLen, numServicePoints, closingTime);
+        }
+
         // Calculating average
         int averageTimeSpentInQueForFulfilledCus = totalTimeSpentInQueAllFulfillCus/fulfilledCustomers;
+        writeToFile(">>>> CLOSING TIME REACHED >>>: ", 0, fpWrite);
+        writeToFile("   Average waiting time for fulffilled customer: ", averageTimeSpentInQueForFulfilledCus, fpWrite);
         printf("---- STATS (One sim run) ---\n");
         printf("Average time spent in queue for fulfilled : %d\n", averageTimeSpentInQueForFulfilledCus); 
         printf("Unfulfilled Customers : %d\n", unfulfilledCustomers); 
         printf("Fulfilled Customers : %d\n", fulfilledCustomers); 
         printf("Timed-out Customers : %d\n", timedOutCustomers); 
     }
+}
+
+void startSimulation(char *fileName)
+{
+    fpWrite = fopen(fileName, "w+");
+    // Simulation code goes in here
+    multiSimulation(5, -1, 1, 100);
+    fclose(fpWrite);
 }
