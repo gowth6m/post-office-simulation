@@ -6,6 +6,15 @@
 #include "simulation.c"
 #include "fileManager.c"
 
+// Define settings for simulation to adjust
+int minServeTime = 5;
+int maxServeTime = 30;
+int minToleranceTime = 20;
+int maxToleranceTime = 50;
+int minNoOfCustomerAdded = 10;
+int maxNoOfCustomerAdded = 50;
+int customerSpawnInterval = 10;
+
 
 bool inputCheck(int argc, char const *argv[]) {
     for (int i = 0; i<argc; i++) {

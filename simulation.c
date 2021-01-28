@@ -3,14 +3,14 @@
 #include "randGenerator.c"
 #include "customerQueue.c"
 
-// Settings for simulation to adjust
-int minServeTime = 5;
-int maxServeTime = 30;
-int minToleranceTime = 20;
-int maxToleranceTime = 50;
-int minNoOfCustomerAdded = 10;
-int maxNoOfCustomerAdded = 50;
-int customerSpawnInterval = 10;
+// Declare settings for simulation to adjust
+extern int minServeTime;
+extern int maxServeTime;
+extern int minToleranceTime;
+extern int maxToleranceTime;
+extern int minNoOfCustomerAdded;
+extern int maxNoOfCustomerAdded;
+extern int customerSpawnInterval;
 
 // Globals for tracking
 int fulfilledCustomers = 0;
