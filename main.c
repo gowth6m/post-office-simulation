@@ -1,4 +1,4 @@
-// C Family : CA1 by Gowthaman Ravindrathas
+// CA
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -22,7 +22,8 @@ bool inputCheck(int argc, char const *argv[]) {
 
 int main(int argc, char const *argv[])
 {
-    runSimulation(10, 1, 80);
+    multiSimulation(1, -1, 1, 100);
+
 }
 
 // --------------------------------------------------------
@@ -32,10 +33,10 @@ int main(int argc, char const *argv[])
 // On the spec it says that the customer will become timed-out customer
 // does that mean just remove them?
 
+// Do we have to worry about header files and stuff?
+
 // --------------------------------------------------------
 // TASKS TO IMPLEMENT:
-// -- Implement max limit for queue
-// -- Added to unsatistfied customer if max queue
 // -- Implement file reader
 // -- Implement file writer
 
