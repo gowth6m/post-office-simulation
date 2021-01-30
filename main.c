@@ -1,68 +1,106 @@
-// CA
+/**
+* File:			main.c
+*
+* Description:  main function of the post office queue simulator.
+*
+* Autor: 		Gowthaman Ravindrathas
+*
+* Date:			27.01.2021
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
+#include <time.h>
 #include <string.h>
+#include "fileManager.c"
 #include "simulation.c"
 
-// Define settings for simulation to adjust
-int minServeTime = 5;
-int maxServeTime = 30;
-int minToleranceTime = 20;
-int maxToleranceTime = 50;
-int minNoOfCustomerAdded = 10;
-int maxNoOfCustomerAdded = 50;
-int customerSpawnInterval = 100;
+/* check format fo the command line args */
+void verifyCommandLineFormat(int argc, char ** argv, int * numSims);
 
-bool inputCheck(int argc, char const *argv[]) {
-    for (int i = 0; i<argc; i++) {
-        printf("%d \t %s \n", i, argv[i]);
-    }
-    
-    // Checks if valid amout of args given
-    if(argc != 4) {
-        printf("Error, invalid amount of arguments.");
-    }
-    return true;
+
+int main(int argc, char ** argv){
+
+	int numSims, maxQueLen, numServicePoints, closingTime, err,
+		mxNewCustomers, mnNewCustomers, mxServTime, mxWaitingTolerance;
+	char * inputFileName;
+	char * outputFileName;
+	FILE * fp;
+
+	/* Set the seed for the pseudo random numbers with uniform distribution */
+	srand(time(NULL));
+
+	/* check format fo the command line args */
+	verifyCommandLineFormat(argc, argv, & numSims);
+
+	inputFileName = argv[1];
+	outputFileName = argv[3];
+
+	/* read input parameters from the given file */
+	err = getInfoFromInput(inputFileName, & maxQueLen, & numServicePoints, & closingTime, 
+		& mxNewCustomers, & mnNewCustomers, & mxServTime, & mxWaitingTolerance);
+
+	if(err == -1)
+	{
+		printf("Wrong format in input file.\n");
+		exit(-1);
+	}
+
+	if(err == -2)
+	{
+		printf("Parameters in input file must be positive integers. (except mnNewCustomers could be 0)\n");
+		exit(-1);
+	}
+
+	if(err == -3)
+	{
+		printf("Failed opening input file.\n");
+		exit(-1);
+	}
+
+	/* redirect output to show results to the given output file */
+	if(freopen(outputFileName, "w", stdout) == NULL)
+	{
+		printf("Failed opening file %s\n", outputFileName);
+		exit(-1);
+	}
+
+	/* print the readed parameters */
+	printReadedParameters(maxQueLen,  numServicePoints,  closingTime, 
+		 mxNewCustomers,  mnNewCustomers,  mxServTime,  mxWaitingTolerance);
+
+	/* make numSims simulations */
+	runSimulation(numSims, maxQueLen,  numServicePoints,  closingTime, 
+		 mxNewCustomers,  mnNewCustomers,  mxServTime,  mxWaitingTolerance);
+
+	return 0;
 }
 
-
-int main(int argc, char const *argv[])
+/* check format fo the command line args */
+void verifyCommandLineFormat(int argc, char ** argv, int * numSims)
 {
-    startSimulation("test_write.txt");
 
+	/* verify format */
+	if(argc != 4)
+	{
+		printf("Invalid format. The correcct format is:\n./simQ <fileIn> <numSims> <fileOut>\n");
+		exit(-1);
+	}
 
-}  
-    
+	/* extract number of simulations */
+	(*numSims) = atoi(argv[2]);
 
-// --------------------------------------------------------
-// What happens when its near finish time and the time taken to 
-// serve customer exceed fisnish time?
+	/* verify format */
+	if((*numSims) == 0 && strcmp(argv[2],"0"))
+	{
+		printf("Invalid format. The number of simulations must be a positive integer.\n");
+		exit(-1);
+	}
+	else if((*numSims) == 0)
+	{
+		printf("Invalid format. The correcct format is:\n./simQ <fileIn> <numSims> <fileOut>\n");
+		exit(-1);
+	}
 
-// On the spec it says that the customer will become timed-out customer
-// does that mean just remove them?
+}
 
-// Do we have to worry about header files and stuff?
-
-// --------------------------------------------------------
-// TASKS TO IMPLEMENT:
-// -- Implement file reader
-// -- Implement file writer
-
-// --------------------------------------------------------
-// EXAMPLE OUT FOR FILE:
-// 
-// - PER CLOCK CYCLE:
-//      * Time inverval number (im guessing this is like a clock)
-//      * Number of customers currently being served (check servicePointArr 
-//          - if > 0 then the point is being served - maybe forloop it)
-//      * Number of people currently in the queue 
-//          - use customerQueue->queueLength
-//      * Numbers of fulfilled - use the global fulfilledCustomers
-//      * Number of unfulfilled - use the global unfulfilledCustomers
-//      * Number of timed-out customers so far - use timedOutCustomers
-// 
-// - Marker showing when closing time has been reached.
-// - The time it takes from closing time until all remaining customers have been served.
-// - The average waiting time for fulfilled customers over the whole simulation 
-//      (i.e. the number of time intervals they spend in the queue).

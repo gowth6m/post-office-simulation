@@ -1,93 +1,189 @@
-// Linked list based implementation of customer queue
-#include <stdio.h> 
-#include <stdlib.h>
-  
+/*
+* File:			customerQueue.c
+*
+* Description:  Linked list based implementation of customer queue.
+*
+* Autor: 		Gowthaman Ravindrathas
+*
+* Date:			27.01.2021
+*/
 
-// Linked list node to store a queue entry 
-struct CustomerNode { 
-    int key; // customerID
-    int timeSpentInQueue; // time spent waiting in the queue
-    int waitingToleranceLimit; // max time the customer waits before leaving queue
-    int timeTakenToServe; // time it takes to serve a customer
-    int timeAddedToQueue; // time at which the customer was added to the queue
-    struct CustomerNode* next; // pointer to next node/customer in queue
-}; 
-  
-// The queue, front stores the front node of LL and rear stores the last node of LL 
-struct Queue { 
-    int length; // the lenght of the queue/amount of people in queue
-    struct CustomerNode *front, *rear; // first customer and last customer of queue
-}; 
+#include <stdlib.h>
+#include "customerQueue.h"  
+
  
-// A utility function to create a new linked list node. 
-struct CustomerNode* newNode(int k, int tolerance, int serveTime, int timeAdded) 
+/* A utility function to create a new linked list node. */
+CustomerNode* newNode(int key_, int waitTolerance, int serveTime) 
 { 
-    struct CustomerNode* temp = (struct CustomerNode*)malloc(sizeof(struct CustomerNode)); 
-    temp->key = k; 
-    temp->waitingToleranceLimit = tolerance;
+	/* Allocation of memory for the new node */
+    CustomerNode* temp = (CustomerNode*) malloc(sizeof(CustomerNode));
+    /* verify allocation of memory */
+    if(temp == NULL){
+    	/* Error No Memory available */
+    	return NULL;
+    }
+
+    /* assign initial values to the node attributes */
+    temp->key = key_; 
+    temp->waitingToleranceLimit = waitTolerance;
     temp->timeTakenToServe = serveTime;
-    temp->timeAddedToQueue = timeAdded;
-    temp->timeSpentInQueue = 0; // How can I increase this?
+    temp->timeSpentInQueue = 0;
     temp->next = NULL; 
+
     return temp; 
 } 
   
-// A utility function to create an empty queue 
-struct Queue* createQueue() 
+/* A utility function to create an empty queue */
+Queue* createQueue() 
 { 
-    struct Queue* q = (struct Queue*)malloc(sizeof(struct Queue)); 
+    Queue* q = (Queue*) malloc(sizeof(Queue));
+    /* verify allocation of memory */
+    if(q == NULL){
+    	/* Error No Memory available */
+    	return NULL;
+    }
+
     q->front = q->rear = NULL; 
-    q->length = 0;
+    q->queueLength = 0;
+
     return q; 
 }
   
-// The function to add a key k to q 
-void enQueue(struct Queue* q, int k, int tolerance, int serveTime, int timeAdded) 
+/* The function to add a key k to q */
+int enQueue(Queue* q, int k, int waitTolerance, int serveTime)
 { 
-    // Increase queue length
-    q->length++;
-    // Create a new LL node 
-    struct CustomerNode* temp = newNode(k, tolerance, serveTime, timeAdded); 
-    
-    // If queue is empty, then new node is front and rear both 
-    if (q->rear == NULL) { 
-        q->front = q->rear = temp; 
-        return; 
-    } 
+	
+	CustomerNode* temp;			/* New customer node */
 
-    // Add the new node at the end of queue and change rear 
+    /* Create a new LL node */
+    temp = newNode(k, waitTolerance, serveTime);
+    /* verify allocation of memory */
+    if(temp == NULL){
+    	/* Error No Memory available */
+    	return -1;
+    }
+
+    /* If queue is empty, then new node is front and rear both */
+    if (queueEmpty(q)) {
+
+        q->front = q->rear = temp;
+        q->queueLength++;
+
+        return 0; 
+    
+    } 
+  
+    /* Add the new node at the end of queue and change rear */
     q->rear->next = temp; 
     q->rear = temp; 
+    q->queueLength++;
+
+    return 0;
 } 
   
-// Function to remove a key from given queue q 
-void deQueue(struct Queue* q) 
-{   
-    // Decrease queue length
-    q->length--;
-    // If queue is empty, return NULL. 
-    if (q->front == NULL) 
+/* Function to remove a key from given queue q */
+void deQueue(Queue* q) 
+{ 
+    /* If queue is empty, return. */
+    if (queueEmpty(q)) 
         return; 
-
-    // Store previous front and move front one node ahead 
-    struct CustomerNode* temp = q->front; 
+  
+    /* Store previous front and move front one node ahead */
+    CustomerNode* temp = q->front; 
+  
     q->front = q->front->next; 
   
-    // If front becomes NULL, then change rear also as NULL 
+    /* If front becomes NULL, then change rear also as NULL */
     if (q->front == NULL) 
         q->rear = NULL; 
-  
-    free(temp); // Free allocated memory for the node
+
+    q->queueLength--;
+
+    free(temp);
+
 }
 
+/* Function to get the length of the queue */
+int queueGetLength(Queue* q)
+{
+	return q->queueLength;
+}
 
-// A utility function to count the number of nodes in the LL
-int getCountOfQueue(struct CustomerNode* node) 
-{ 
-    // Base case 
-    if (node == NULL) 
-        return 0; 
-  
-    // count is 1 + count of remaining list 
-    return 1 + getCountOfQueue(node->next); 
+/* Function to check if the queue is empty */
+int queueEmpty(Queue * q)
+{
+	return (q->queueLength == 0);
+}
+
+/* 
+	Function that iterate over the customers 
+   	in the queue. Delete timed-out customers,
+   	otherwise increase the time spent in the queue.
+   	return the number of timed-out customers found in the queue. 
+*/
+int getTimedOutCustomers(Queue * q){
+
+	CustomerNode* prev = NULL;
+	CustomerNode* iterator = (q->front);
+	CustomerNode* temp = NULL;
+	int countTimedOut = 0;
+
+	/* iterate over the customers in the queue with this loop */
+	while(iterator != NULL){
+
+		/* 	
+			If the current customer in iterator is timed-out
+			then delete it from the queue.
+		 */
+		if(iterator->timeSpentInQueue >= iterator->waitingToleranceLimit)
+		{
+			/* if it was the first node in the list */
+			if(prev == NULL)
+			{
+				
+				q->front = iterator->next;
+				
+				/* if it was the only node in the list */
+				if(q->front == NULL)
+					q->rear = NULL;
+
+			}
+			else
+			{
+				
+				prev->next = iterator->next;
+				
+				/* if it was the last node in the list */
+				if(prev->next == NULL)
+					q->rear = prev;
+			}
+
+			/* save the pointer and continue the iteration*/
+			temp = iterator;
+			iterator = iterator->next;
+
+			/* free the node */
+			free(temp);
+
+			/* decrese the length of the queue
+			and count the timed-out customer */
+			q->queueLength--;
+			countTimedOut++;
+
+		}
+		else
+		{
+			/* if the customer is not timed-out
+			then increase it's timeSpentInQueue attribute
+			and continue iterating over the list */
+			iterator->timeSpentInQueue++;
+			prev = iterator;
+			iterator = iterator->next;
+		}
+		
+	} 
+
+	/* return the number of timed-out customers found in the queue. */
+	return countTimedOut;
+
 }

@@ -1,21 +1,33 @@
-# the compiler: gcc for C program, define as g++ for C++
+# # the compiler: gcc for C program, define as g++ for C++
 # CC = gcc
 
-# compiler flags:
-#  -g    adds debugging information to the executable file
-#  -Wall turns on most, but not all, compiler warnings
+# # compiler flags:
+# #  -g    adds debugging information to the executable file
+# #  -Wall turns on most, but not all, compiler warnings
 # CFLAGS  = -ansi -g 
 
-# # the build target executable:
-# TARGET = main
+# # # the build target executable:
+# TARGET = simQ
+
+# OBJS = simulation.o fileManager.o customerQueue.o
 
 # all: $(TARGET)
 
-# $(TARGET): $(TARGET).c
-# 	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
+# $(TARGET): main.c $(OBJS)
+# 	$(CC) $(CFLAGS) -o $(TARGET) main.c $(OBJS)
+
+# simulation.o: simulation.c customerQueue.o
+# 	$(CC) -c $(CFLAGS) simulation.c
+
+# fileManager.o: fileManager.c
+# 	$(CC) -c $(CFLAGS) fileManager.c
+
+# customerQueue.o: customerQueue.c
+# 	$(CC) -c $(CFLAGS) customerQueue.c
 
 # clean:
-# 	$(RM) $(TARGET)
+# 	rm $(TARGET)
+# 	rm $(OBJS)
 
 all: main
 

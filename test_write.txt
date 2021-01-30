@@ -1,6 +1,0 @@
->>>> MULTI-SIM STATS >>>: 0
-List of parameter read in: goes here0
-   Average number of fulfilled customers: 3
-   Average number of unfulfilled customers: 1
-   Average number of timed-out customers: 1
-   Average waiting time for fulffilled customer: 11
