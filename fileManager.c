@@ -15,7 +15,7 @@
 /* Function that read one parameter from the input file 
     with the correct format. 
 */
-int readParameter(FILE * fp, char * parameterName, int * parameter)
+int readParameter(FILE *fp, char *parameterName, int *parameter)
 {
 
     char s[20];
@@ -37,8 +37,7 @@ int readParameter(FILE * fp, char * parameterName, int * parameter)
 }
 
 /* Function to read all the parameters from the input file */
-int getInfoFromInput(char *fileName, int * maxQueLen, int * numServicePoints, int * closingTime, 
-            int * mxNewCustomers, int * mnNewCustomers, int * mxServTime, int * mxWaitingTolerance) 
+int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int *closingTime, int *maxNewCustomers, int *minNewCustomers, int *maxServeTime, int *maxWaitingTolerance) 
 {
     
     /* Pointer to the file */
@@ -87,51 +86,51 @@ int getInfoFromInput(char *fileName, int * maxQueLen, int * numServicePoints, in
         return -2;
     }
 
-    /* read the mxNewCustomers parameter*/
-    if(readParameter(fp, "mxNewCustomers", mxNewCustomers) == -1)
+    /* read the maxNewCustomers parameter*/
+    if(readParameter(fp, "maxNewCustomers", maxNewCustomers) == -1)
     {
         /*wrong input file format*/
         return -1;
     }
 
     /* Check parameter is positive */
-    if(mxNewCustomers <= 0){
+    if(maxNewCustomers <= 0){
         return -2;
     }
 
-    /* read the mnNewCustomers parameter*/
-    if(readParameter(fp, "mnNewCustomers", mnNewCustomers) == -1)
+    /* read the minNewCustomers parameter*/
+    if(readParameter(fp, "minNewCustomers", minNewCustomers) == -1)
     {
         /*wrong input file format*/
         return -1;
     }
 
     /* Check parameter is not negative */
-    if(mnNewCustomers < 0){
+    if(minNewCustomers < 0){
         return -2;
     }
 
-    /* read the mxServTime parameter*/
-    if(readParameter(fp, "mxServTime", mxServTime) == -1)
+    /* read the maxServeTime parameter*/
+    if(readParameter(fp, "maxServeTime", maxServeTime) == -1)
     {
         /*wrong input file format*/
         return -1;
     }
 
     /* Check parameter is positive */
-    if(mxServTime <= 0){
+    if(maxServeTime <= 0){
         return -2;
     }
 
-    /* read the mxWaitingTolerance parameter*/
-    if(readParameter(fp, "mxWaitingTolerance", mxWaitingTolerance) == -1)
+    /* read the maxWaitingTolerance parameter*/
+    if(readParameter(fp, "maxWaitingTolerance", maxWaitingTolerance) == -1)
     {
         /*wrong input file format*/
         return -1;
     }
 
     /* Check parameter is positive */
-    if(mxWaitingTolerance <= 0){
+    if(maxWaitingTolerance <= 0){
         return -2;
     }
     
@@ -142,10 +141,8 @@ int getInfoFromInput(char *fileName, int * maxQueLen, int * numServicePoints, in
 }
 
 /*Function to print the readed parameters */
-void printReadedParameters(int maxQueLen, int numServicePoints, int closingTime,
-        int mxNewCustomers, int mnNewCustomers, int mxServTime, int mxWaitingTolerance)
+void printReadedParameters(int maxQueLen, int numServicePoints, int closingTime, int maxNewCustomers, int minNewCustomers, int maxServeTime, int maxWaitingTolerance)
 {
-
     printf("\nReaded parameters:\n\n");
 
     printf("maxQueueLength %d\n", maxQueLen);
@@ -154,12 +151,11 @@ void printReadedParameters(int maxQueLen, int numServicePoints, int closingTime,
     
     printf("closingTime %d\n", closingTime);
     
-    printf("mxNewCustomers %d\n", mxNewCustomers);
+    printf("maxNewCustomers %d\n", maxNewCustomers);
     
-    printf("mnNewCustomers %d\n", mnNewCustomers);
+    printf("minNewCustomers %d\n", minNewCustomers);
     
-    printf("mxServTime %d\n", mxServTime);
+    printf("maxServeTime %d\n", maxServeTime);
     
-    printf("mxWaitingTolerance %d\n", mxWaitingTolerance);
-
+    printf("maxWaitingTolerance %d\n", maxWaitingTolerance);
 }

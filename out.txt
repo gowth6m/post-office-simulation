@@ -1,0 +1,25 @@
+
+Readed parameters:
+
+maxQueueLength 5
+numServicePoints 10
+closingTime 100
+maxNewCustomers 10
+minNewCustomers 0
+maxServeTime 10
+maxWaitingTolerance 25
+
+-------------------------------
+
+FINAL RESULTS:
+
+Averages:
+
+Fulfilled customers: 185.35
+Unfulfilled customers: 309.38
+Timed-out customers: 5.05
+
+Time it took from closing time until all remaining customers were served: 9.84
+
+Average waiting time (in the queue) for fulfilled customers: 1.40
+

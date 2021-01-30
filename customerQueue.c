@@ -18,7 +18,8 @@ CustomerNode* newNode(int key_, int waitTolerance, int serveTime)
 	/* Allocation of memory for the new node */
     CustomerNode* temp = (CustomerNode*) malloc(sizeof(CustomerNode));
     /* verify allocation of memory */
-    if(temp == NULL){
+    if(temp == NULL)
+	{
     	/* Error No Memory available */
     	return NULL;
     }
@@ -38,7 +39,8 @@ Queue* createQueue()
 { 
     Queue* q = (Queue*) malloc(sizeof(Queue));
     /* verify allocation of memory */
-    if(q == NULL){
+    if(q == NULL)
+	{
     	/* Error No Memory available */
     	return NULL;
     }
@@ -52,25 +54,22 @@ Queue* createQueue()
 /* The function to add a key k to q */
 int enQueue(Queue* q, int k, int waitTolerance, int serveTime)
 { 
-	
-	CustomerNode* temp;			/* New customer node */
+	CustomerNode* temp;	/* New customer node */
 
     /* Create a new LL node */
     temp = newNode(k, waitTolerance, serveTime);
     /* verify allocation of memory */
-    if(temp == NULL){
+    if(temp == NULL)
+	{
     	/* Error No Memory available */
     	return -1;
     }
 
     /* If queue is empty, then new node is front and rear both */
     if (queueEmpty(q)) {
-
         q->front = q->rear = temp;
         q->queueLength++;
-
         return 0; 
-    
     } 
   
     /* Add the new node at the end of queue and change rear */
@@ -86,25 +85,27 @@ void deQueue(Queue* q)
 { 
     /* If queue is empty, return. */
     if (queueEmpty(q)) 
+	{
         return; 
+	}
   
     /* Store previous front and move front one node ahead */
     CustomerNode* temp = q->front; 
-  
     q->front = q->front->next; 
   
     /* If front becomes NULL, then change rear also as NULL */
-    if (q->front == NULL) 
+    if (q->front == NULL)
+	{
         q->rear = NULL; 
+	}
 
     q->queueLength--;
-
     free(temp);
 
 }
 
 /* Function to get the length of the queue */
-int queueGetLength(Queue* q)
+int getQueueLen(Queue* q)
 {
 	return q->queueLength;
 }
@@ -115,14 +116,10 @@ int queueEmpty(Queue * q)
 	return (q->queueLength == 0);
 }
 
-/* 
-	Function that iterate over the customers 
-   	in the queue. Delete timed-out customers,
-   	otherwise increase the time spent in the queue.
-   	return the number of timed-out customers found in the queue. 
-*/
-int getTimedOutCustomers(Queue * q){
-
+/* Function that iterate over the customers in the queue. Delete timed-out customers, otherwise increase the time spent in the queue. 
+	Return the number of timed-out customers found in the queue. */
+int getTimedOutCustomers(Queue * q)
+{
 	CustomerNode* prev = NULL;
 	CustomerNode* iterator = (q->front);
 	CustomerNode* temp = NULL;
@@ -131,59 +128,51 @@ int getTimedOutCustomers(Queue * q){
 	/* iterate over the customers in the queue with this loop */
 	while(iterator != NULL){
 
-		/* 	
-			If the current customer in iterator is timed-out
-			then delete it from the queue.
-		 */
+		/* If the current customer in iterator is timed-out then delete it from the queue. */
 		if(iterator->timeSpentInQueue >= iterator->waitingToleranceLimit)
 		{
 			/* if it was the first node in the list */
 			if(prev == NULL)
 			{
-				
 				q->front = iterator->next;
 				
 				/* if it was the only node in the list */
 				if(q->front == NULL)
+				{
 					q->rear = NULL;
-
+				}
 			}
 			else
 			{
-				
 				prev->next = iterator->next;
 				
 				/* if it was the last node in the list */
 				if(prev->next == NULL)
+				{
 					q->rear = prev;
+				}
 			}
 
-			/* save the pointer and continue the iteration*/
+			/* save the pointer and continue the iteration */
 			temp = iterator;
 			iterator = iterator->next;
 
 			/* free the node */
 			free(temp);
 
-			/* decrese the length of the queue
-			and count the timed-out customer */
+			/* decrese the length of the queue and count the timed-out customer */
 			q->queueLength--;
 			countTimedOut++;
-
 		}
 		else
 		{
-			/* if the customer is not timed-out
-			then increase it's timeSpentInQueue attribute
-			and continue iterating over the list */
+			/* if the customer is not timed-out then increase it's timeSpentInQueue attribute and continue iterating over the list */
 			iterator->timeSpentInQueue++;
 			prev = iterator;
 			iterator = iterator->next;
 		}
-		
-	} 
+	}
 
 	/* return the number of timed-out customers found in the queue. */
 	return countTimedOut;
-
 }

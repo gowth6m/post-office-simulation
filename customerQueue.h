@@ -40,21 +40,16 @@ Queue* createQueue();
 /* The function to add a key k to q */
 int enQueue(Queue* q, int k, int waitTolerance, int serveTime);
 
-  
 /* Function to remove a key from given queue q */
 void deQueue(Queue* q);
 
 /* Function to get the length of the queue */
-int queueGetLength(Queue* q);
+int getQueueLen(Queue* q);
 
 /* Function to check if the queue is empty */
 int queueEmpty(Queue * q);
 
-/* 
-	Function that iterate over the customers 
-   	in the queue. Delete time-out customers,
-   	otherwise increase the time spent in the queue 
-*/
+/* Function that iterate over the customers in the queue. Delete time-out customers, otherwise increase the time spent in the queue */
 int getTimedOutCustomers(Queue * q);
 
 #endif

@@ -1,8 +1,8 @@
-maxQueueLength 25
-numServicePoints 5
+maxQueueLength 5
+numServicePoints 10
 closingTime 100
-mxNewCustomers 10
-mnNewCustomers 0
-mxServTime 10
-mxWaitingTolerance 25
 
+maxNewCustomers 10
+minNewCustomers 0
+maxServeTime 10
+maxWaitingTolerance 25

@@ -19,26 +19,24 @@
 void verifyCommandLineFormat(int argc, char ** argv, int * numSims);
 
 
-int main(int argc, char ** argv){
-
-	int numSims, maxQueLen, numServicePoints, closingTime, err,
-		mxNewCustomers, mnNewCustomers, mxServTime, mxWaitingTolerance;
-	char * inputFileName;
-	char * outputFileName;
-	FILE * fp;
+int main(int argc, char ** argv)
+{
+	int numSims, maxQueLen, numServicePoints, closingTime, err, maxNewCustomers, minNewCustomers, maxServeTime, maxWaitingTolerance;
+	char *inputFileName;
+	char *outputFileName;
+	FILE *fp;
 
 	/* Set the seed for the pseudo random numbers with uniform distribution */
 	srand(time(NULL));
 
 	/* check format fo the command line args */
-	verifyCommandLineFormat(argc, argv, & numSims);
+	verifyCommandLineFormat(argc, argv, &numSims);
 
 	inputFileName = argv[1];
 	outputFileName = argv[3];
 
 	/* read input parameters from the given file */
-	err = getInfoFromInput(inputFileName, & maxQueLen, & numServicePoints, & closingTime, 
-		& mxNewCustomers, & mnNewCustomers, & mxServTime, & mxWaitingTolerance);
+	err = getInfoFromInput(inputFileName, &maxQueLen, &numServicePoints, &closingTime, &maxNewCustomers, &minNewCustomers, &maxServeTime, &maxWaitingTolerance);
 
 	if(err == -1)
 	{
@@ -48,7 +46,7 @@ int main(int argc, char ** argv){
 
 	if(err == -2)
 	{
-		printf("Parameters in input file must be positive integers. (except mnNewCustomers could be 0)\n");
+		printf("Parameters in input file must be positive integers. (except minNewCustomers could be 0)\n");
 		exit(-1);
 	}
 
@@ -66,18 +64,16 @@ int main(int argc, char ** argv){
 	}
 
 	/* print the readed parameters */
-	printReadedParameters(maxQueLen,  numServicePoints,  closingTime, 
-		 mxNewCustomers,  mnNewCustomers,  mxServTime,  mxWaitingTolerance);
+	printReadedParameters(maxQueLen,  numServicePoints,  closingTime, maxNewCustomers,  minNewCustomers,  maxServeTime,  maxWaitingTolerance);
 
 	/* make numSims simulations */
-	runSimulation(numSims, maxQueLen,  numServicePoints,  closingTime, 
-		 mxNewCustomers,  mnNewCustomers,  mxServTime,  mxWaitingTolerance);
+	runSimulation(numSims, maxQueLen,  numServicePoints,  closingTime, maxNewCustomers,  minNewCustomers,  maxServeTime,  maxWaitingTolerance);
 
 	return 0;
 }
 
 /* check format fo the command line args */
-void verifyCommandLineFormat(int argc, char ** argv, int * numSims)
+void verifyCommandLineFormat(int argc, char **argv, int *numSims)
 {
 
 	/* verify format */
