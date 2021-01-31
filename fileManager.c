@@ -12,9 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* Function that read one parameter from the input file 
-    with the correct format. 
-*/
+/* Function that read one parameter from the input file with the correct format. */
 int readParameter(FILE *fp, char *parameterName, int *parameter)
 {
 
@@ -39,12 +37,11 @@ int readParameter(FILE *fp, char *parameterName, int *parameter)
 /* Function to read all the parameters from the input file */
 int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int *closingTime, int *maxNewCustomers, int *minNewCustomers, int *maxServeTime, int *maxWaitingTolerance) 
 {
-    
     /* Pointer to the file */
     FILE *fp;
     /* Opening a file in r mode*/
     fp = fopen (fileName, "r");
-
+    
     if(fp == NULL){
         /* failed opening file */
         return -3;
@@ -58,7 +55,7 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
     }
 
     /* Check parameter is positive */
-    if(maxQueLen <= 0){
+    if(*maxQueLen <= 0){
         return -2;
     }
 
@@ -70,7 +67,7 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
     }
 
     /* Check parameter is positive */
-    if(numServicePoints <= 0){
+    if(*numServicePoints <= 0){
         return -2;
     }
     
@@ -82,7 +79,7 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
     }
 
     /* Check parameter is positive */
-    if(closingTime <= 0){
+    if(*closingTime <= 0){
         return -2;
     }
 
@@ -94,7 +91,7 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
     }
 
     /* Check parameter is positive */
-    if(maxNewCustomers <= 0){
+    if(*maxNewCustomers <= 0){
         return -2;
     }
 
@@ -106,8 +103,13 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
     }
 
     /* Check parameter is not negative */
-    if(minNewCustomers < 0){
+    if(*minNewCustomers < 0){
         return -2;
+    }
+
+    /* Check that max isn't lower than min value */
+    if(*maxNewCustomers < *minNewCustomers){
+        return -4;
     }
 
     /* read the maxServeTime parameter*/
@@ -118,7 +120,7 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
     }
 
     /* Check parameter is positive */
-    if(maxServeTime <= 0){
+    if(*maxServeTime <= 0){
         return -2;
     }
 
@@ -130,18 +132,17 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
     }
 
     /* Check parameter is positive */
-    if(maxWaitingTolerance <= 0){
+    if(*maxWaitingTolerance <= 0){
         return -2;
     }
-    
+
     /* close the file */
     fclose(fp);
-
     return 0;
 }
 
 /*Function to print the readed parameters */
-void printReadedParameters(int maxQueLen, int numServicePoints, int closingTime, int maxNewCustomers, int minNewCustomers, int maxServeTime, int maxWaitingTolerance)
+void printReadParameters(int maxQueLen, int numServicePoints, int closingTime, int maxNewCustomers, int minNewCustomers, int maxServeTime, int maxWaitingTolerance)
 {
     printf("\nReaded parameters:\n\n");
 
@@ -159,3 +160,6 @@ void printReadedParameters(int maxQueLen, int numServicePoints, int closingTime,
     
     printf("maxWaitingTolerance %d\n", maxWaitingTolerance);
 }
+
+// make sure max cant be less than min
+// implement random distrubution

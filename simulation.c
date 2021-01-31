@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "customerQueue.c"
+#include "customerQueue.h"
 #include "simulation.h"
 
 // customers related counters

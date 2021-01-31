@@ -2,7 +2,8 @@ maxQueueLength 5
 numServicePoints 10
 closingTime 100
 
-maxNewCustomers 10
-minNewCustomers 0
+maxNewCustomers 5
+minNewCustomers 5
+
 maxServeTime 10
 maxWaitingTolerance 25

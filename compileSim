@@ -1,4 +1,11 @@
 #!/bin/sh
 
+gcc -ansi -I./ -c simulation.c -o simulation.o
+gcc -ansi -I./ -c fileManager.c -o fileManager.o
+gcc -ansi -I./ -c customerQueue.c -o customerQueue.o
+
+gcc -ansi -g -o simQ main.c simulation.o fileManager.o customerQueue.o
+
+rm simulation.o fileManager.o customerQueue.o
+
 # make
-gcc -ansi -g -o simQ main.c

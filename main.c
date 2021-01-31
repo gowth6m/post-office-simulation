@@ -12,11 +12,11 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include "fileManager.c"
-#include "simulation.c"
+#include "fileManager.h"
+#include "simulation.h"
 
-/* check format fo the command line args */
-void verifyCommandLineFormat(int argc, char ** argv, int * numSims);
+/* check format fo the command line args - function prototype */
+void verifyCommandLineFormat(int argc, char **argv, int *numSims);
 
 
 int main(int argc, char ** argv)
@@ -38,7 +38,7 @@ int main(int argc, char ** argv)
 	/* read input parameters from the given file */
 	err = getInfoFromInput(inputFileName, &maxQueLen, &numServicePoints, &closingTime, &maxNewCustomers, &minNewCustomers, &maxServeTime, &maxWaitingTolerance);
 
-	if(err == -1)
+	if(err == -1)	
 	{
 		printf("Wrong format in input file.\n");
 		exit(-1);
@@ -56,6 +56,12 @@ int main(int argc, char ** argv)
 		exit(-1);
 	}
 
+	if(err == -4)
+	{
+		printf("Max value lower than min value.\n");
+		exit(-1);
+	}
+
 	/* redirect output to show results to the given output file */
 	if(freopen(outputFileName, "w", stdout) == NULL)
 	{
@@ -64,7 +70,7 @@ int main(int argc, char ** argv)
 	}
 
 	/* print the readed parameters */
-	printReadedParameters(maxQueLen,  numServicePoints,  closingTime, maxNewCustomers,  minNewCustomers,  maxServeTime,  maxWaitingTolerance);
+	printReadParameters(maxQueLen,  numServicePoints,  closingTime, maxNewCustomers,  minNewCustomers,  maxServeTime,  maxWaitingTolerance);
 
 	/* make numSims simulations */
 	runSimulation(numSims, maxQueLen,  numServicePoints,  closingTime, maxNewCustomers,  minNewCustomers,  maxServeTime,  maxWaitingTolerance);
@@ -97,6 +103,5 @@ void verifyCommandLineFormat(int argc, char **argv, int *numSims)
 		printf("Invalid format. The correcct format is:\n./simQ <fileIn> <numSims> <fileOut>\n");
 		exit(-1);
 	}
-
 }
 

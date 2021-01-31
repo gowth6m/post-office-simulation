@@ -8,13 +8,13 @@
 * Date:			30.01.2021
 */
 
-#ifndef _FILE_MANAGER_H_
-#define _FILE_MANAGER_H_
+#ifndef __FILE_MANAGER_H
+#define __FILE_MANAGER_H
 
 /* Function to read all the parameters from the input file */
 int getInfoFromInput(char *fileName, int * maxQueLen, int * numServicePoints, int * closingTime, int * maxNewCustomers, int * minNewCustomers, int * maxServeTime, int * maxWaitingTolerance);
 
-/*Function to print the readed parameters */
-void printReadedParameters(int maxQueLen, int numServicePoints, int closingTime, int maxNewCustomers, int minNewCustomers, int maxServeTime, int maxWaitingTolerance);
+/*Function to print the read parameters */
+void printReadParameters(int maxQueLen, int numServicePoints, int closingTime, int maxNewCustomers, int minNewCustomers, int maxServeTime, int maxWaitingTolerance);
 
 #endif

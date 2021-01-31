@@ -8,8 +8,8 @@
 * Date:			27.01.2021
 */
 
-#ifndef _CUSTOMER_QUEUE_H_
-#define _CUSTOMER_QUEUE_H_
+#ifndef __CUSTOMER_QUEUE_H
+#define __CUSTOMER_QUEUE_H
 
 /* Linked list node to store a queue entry */
 typedef struct CustomerNode { 
