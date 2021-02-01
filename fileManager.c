@@ -1,7 +1,7 @@
 /*
 * File:         customerQueue.c
 *
-* Description:  implementation of some functions to read the input from the input file.
+* Description:  Implementation of some functions to read the input from the input file.
 *
 * Autor:        Gowthaman Ravindrathas
 *
@@ -39,7 +39,7 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
 {
     /* Pointer to the file */
     FILE *fp;
-    /* Opening a file in r mode*/
+    /* Opening a file in r mode */
     fp = fopen (fileName, "r");
     
     if(fp == NULL){
@@ -47,19 +47,19 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
         return -3;
     }
 
-    /* read the maxQueLen parameter*/
+    /* read the maxQueLen parameter */
     if(readParameter(fp, "maxQueueLength", maxQueLen) == -1)
     {
         /*wrong input file format*/
         return -1;
     }
 
-    /* Check parameter is positive */
-    if(*maxQueLen <= 0){
-        return -2;
+    /* Check parameter is within valid range */
+    if(*maxQueLen <= -2){
+        return -5;
     }
 
-    /* read the numServicePoints parameter*/
+    /* read the numServicePoints parameter */
     if(readParameter(fp, "numServicePoints", numServicePoints) == -1)
     {
         /*wrong input file format*/
@@ -144,7 +144,7 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
 /*Function to print the readed parameters */
 void printReadParameters(int maxQueLen, int numServicePoints, int closingTime, int maxNewCustomers, int minNewCustomers, int maxServeTime, int maxWaitingTolerance)
 {
-    printf("\nReaded parameters:\n\n");
+    printf("\nRead parameters:\n\n");
 
     printf("maxQueueLength %d\n", maxQueLen);
     

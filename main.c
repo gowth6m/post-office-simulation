@@ -1,7 +1,7 @@
 /**
 * File:			main.c
 *
-* Description:  main function of the post office queue simulator.
+* Description:  Main function of the post office simulator.
 *
 * Autor: 		Gowthaman Ravindrathas
 *
@@ -59,6 +59,12 @@ int main(int argc, char ** argv)
 	if(err == -4)
 	{
 		printf("Max value lower than min value.\n");
+		exit(-1);
+	}
+
+	if(err == -5)
+	{
+		printf("Max queue length can't be less than -1. Set as -1 only for queue with no limit.\n");
 		exit(-1);
 	}
 

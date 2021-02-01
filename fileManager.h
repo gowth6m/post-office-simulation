@@ -1,7 +1,7 @@
 /*
 * File:			customerQueue.c
 *
-* Description:  implementation of some functions to read the input from the input file. header file
+* Description:  Implementation of some functions to read the input from the input file. header file
 *
 * Autor: 		Gowthaman Ravindrathas
 *

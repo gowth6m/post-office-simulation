@@ -13,18 +13,18 @@
 #include "customerQueue.h"
 #include "simulation.h"
 
-// customers related counters
+/* customers related counters */
 int fulfilledCustomers;
 int unfulfilledCustomers;
 int timedOutCustomers;
 int nextId;
 int totalQueueWaitTime;
-// average variables
-int avgFulfilledCust;
-int avgUnfulfilledCust;
-int avgTimedOutCust;
-int avgTimeleft;
-int avgQueueWaitTime;
+/* average variables */
+int avgFulfilledCust = 0;
+int avgUnfulfilledCust = 0;
+int avgTimedOutCust = 0;
+int avgTimeleft = 0;
+int avgQueueWaitTime = 0;
 
 /* Function to swap two integer variables */
 void swap(int *a, int *b)
@@ -134,11 +134,11 @@ void loopForManagingCustomers(int closingTime, int numServicePoints, int maxQueL
     for (i = 0; i < numServicePoints; i++)
         servicePointArr[i] = 0;
 
-    // enQueue(queue, 0, 12, 10);
-    // enQueue(queue, 1, 102, 10);
-    // enQueue(queue, 2, 102, 10);
-    // enQueue(queue, 3, 102, 10);
-    // enQueue(queue, 4, 102, 10);
+    /* enQueue(queue, 0, 12, 10); */
+    /* enQueue(queue, 1, 102, 10); */
+    /* enQueue(queue, 2, 102, 10); */
+    /* enQueue(queue, 3, 102, 10); */
+    /* enQueue(queue, 4, 102, 10); */
 
     /* This loop runs until closing time, represents the countdown clock until closing time */
     for (timer = 0; (timer < closingTime) || !queueEmpty(queue) || (timer < maxTimeInServPoint); timer++)
@@ -169,19 +169,19 @@ void loopForManagingCustomers(int closingTime, int numServicePoints, int maxQueL
             /* marks the closing time */
             if (timer == closingTime)
             {
-                printf("\n-------------------------------\n");
-                printf("\n-------------------------------\n");
-                printf("_________ CLOSING TIME ________\n");
-                printf("\n-------------------------------\n");
+                printf("\n------------------------------------------\n");
+                printf("\n------------------------------------------\n");
+                printf("______________ CLOSING TIME ______________\n");
+                printf("\n------------------------------------------\n");
             }
 
-            printf("\n-------------------------------\n");
+            printf("\n------------------------------------------\n");
             printf("\nClock time : %d\n", timer);
             printf("Number of customers currently being served: %d\n", numCurBeingServed);
             printf("Number of customers currently in the queue: %d\n", getQueueLen(queue));
-            printf("Fulfilled customers (aggregate): %d\n", fulfilledCustomers);
-            printf("Unfulfilled customers (aggregate): %d\n", unfulfilledCustomers);
-            printf("Timed-out customers (aggregate): %d\n", timedOutCustomers);
+            printf("Fulfilled customers: %d\n", fulfilledCustomers);
+            printf("Unfulfilled customers: %d\n", unfulfilledCustomers);
+            printf("Timed-out customers: %d\n", timedOutCustomers);
         }
     }
 
@@ -216,7 +216,7 @@ void runSimulation(int numSims, int maxQueLen, int numServicePoints, int closing
     }
 
     /* Print the final results */
-    printf("\n-------------------------------\n");
+    printf("\n------------------------------------------\n");
     printf("\nFINAL RESULTS:\n\n");
 
     if (!singleSim)
