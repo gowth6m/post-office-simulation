@@ -13,3 +13,6 @@ Now just run the simQ executable with the following parameters - inputFile, numb
 
 ## Diagram of the simulation process
 <img src="https://i.imgur.com/YGu3rWK.png">
+
+## The input file
+<img src="https://i.imgur.com/zNCRal7.png">
