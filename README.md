@@ -12,10 +12,10 @@ Now just run the simQ executable with the following parameters - inputFile, numb
 ```
 
 ## Diagram of the simulation process
-<img src="https://i.imgur.com/YGu3rWK.png">
+<img height="350em" src="https://i.imgur.com/YGu3rWK.png">
 
 ## Input and output file
 <div align="center">
-    <img img height="350em" src="https://i.imgur.com/zNCRal7.png">
-    <img img height="350em" src="https://i.imgur.com/47UqeY5.png">
+    <img height="350em" src="https://i.imgur.com/zNCRal7.png">
+    <img height="350em" src="https://i.imgur.com/47UqeY5.png">
 </div>
