@@ -57,10 +57,10 @@ int main(int argc, char ** argv)
 
 	/* print the readed parameters */
 	printReadParameters(maxQueLen,  numServicePoints,  closingTime, maxNewCustomers,  minNewCustomers,  maxServeTime,
-	  maxWaitingTolerance, 	distributionType, meanForNewCustomers, standardDeviationForNewCustomers, meanForServingTime, standardDeviationForServingTime, meanForWaitingTolerance, standardDeviationForWaitingTolerance);
+		maxWaitingTolerance, distributionType, meanForNewCustomers, standardDeviationForNewCustomers, meanForServingTime, standardDeviationForServingTime, meanForWaitingTolerance, standardDeviationForWaitingTolerance);
 
 	/* make numSims simulations */
-	runSimulation(numSims, maxQueLen,  numServicePoints,  closingTime, maxNewCustomers,  minNewCustomers,  maxServeTime, maxWaitingTolerance);
+	runSimulation(numSims, maxQueLen,  numServicePoints,  closingTime, maxNewCustomers,  minNewCustomers,  maxServeTime, maxWaitingTolerance, distributionType, meanForNewCustomers, standardDeviationForNewCustomers, meanForServingTime, standardDeviationForServingTime, meanForWaitingTolerance, standardDeviationForWaitingTolerance);
 
 	return EXIT_SUCCESS;
 }
@@ -126,6 +126,13 @@ void errChecker(int err)
 	if(err == -5)
 	{
 		printf("Max queue length can't be less than -1. Set as -1 only for queue with no limit.\n");
+		fprintf(stderr, "Error %d: %s\n", errno, strerror(errno));
+		exit(1);
+	}
+
+	if(err == -6)
+	{
+		printf("Standard deviation can't be larger than mean.\n");
 		fprintf(stderr, "Error %d: %s\n", errno, strerror(errno));
 		exit(1);
 	}

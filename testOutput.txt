@@ -4,18 +4,20 @@ Read parameters:
 maxQueueLength 10
 numServicePoints 10
 closingTime 100
-distributionType 0
+distributionType 1 (Gaussian distribution)
 
-maxNewCustomers 5
-minNewCustomers 0
-maxServeTime 20
-maxWaitingTolerance 25
+meanForNewCustomers 5
+standardDeviationForNewCustomers 2
+meanForServingTime 10
+standardDeviationForServingTime 5
+meanForWaitingTolerance 15
+standardDeviationForWaitingTolerance 5
 
 ------------------------------------------
 
 Clock time : 0
 Number of customers currently being served: 0
-Number of customers currently in the queue: 5
+Number of customers currently in the queue: 1
 Fulfilled customers: 0
 Unfulfilled customers: 0
 Timed-out customers: 0
@@ -23,8 +25,8 @@ Timed-out customers: 0
 ------------------------------------------
 
 Clock time : 1
-Number of customers currently being served: 5
-Number of customers currently in the queue: 4
+Number of customers currently being served: 1
+Number of customers currently in the queue: 2
 Fulfilled customers: 0
 Unfulfilled customers: 0
 Timed-out customers: 0
@@ -32,8 +34,8 @@ Timed-out customers: 0
 ------------------------------------------
 
 Clock time : 2
-Number of customers currently being served: 9
-Number of customers currently in the queue: 1
+Number of customers currently being served: 3
+Number of customers currently in the queue: 8
 Fulfilled customers: 0
 Unfulfilled customers: 0
 Timed-out customers: 0
@@ -42,7 +44,7 @@ Timed-out customers: 0
 
 Clock time : 3
 Number of customers currently being served: 10
-Number of customers currently in the queue: 1
+Number of customers currently in the queue: 6
 Fulfilled customers: 0
 Unfulfilled customers: 0
 Timed-out customers: 0
@@ -51,36 +53,36 @@ Timed-out customers: 0
 
 Clock time : 4
 Number of customers currently being served: 10
-Number of customers currently in the queue: 3
+Number of customers currently in the queue: 10
 Fulfilled customers: 0
-Unfulfilled customers: 0
+Unfulfilled customers: 1
 Timed-out customers: 0
 
 ------------------------------------------
 
 Clock time : 5
 Number of customers currently being served: 10
-Number of customers currently in the queue: 6
-Fulfilled customers: 1
-Unfulfilled customers: 0
+Number of customers currently in the queue: 10
+Fulfilled customers: 0
+Unfulfilled customers: 4
 Timed-out customers: 0
 
 ------------------------------------------
 
 Clock time : 6
 Number of customers currently being served: 10
-Number of customers currently in the queue: 8
-Fulfilled customers: 2
-Unfulfilled customers: 0
+Number of customers currently in the queue: 10
+Fulfilled customers: 1
+Unfulfilled customers: 8
 Timed-out customers: 0
 
 ------------------------------------------
 
 Clock time : 7
 Number of customers currently being served: 10
-Number of customers currently in the queue: 8
+Number of customers currently in the queue: 10
 Fulfilled customers: 2
-Unfulfilled customers: 0
+Unfulfilled customers: 12
 Timed-out customers: 0
 
 ------------------------------------------
@@ -89,44 +91,44 @@ Clock time : 8
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
 Fulfilled customers: 3
-Unfulfilled customers: 1
-Timed-out customers: 1
+Unfulfilled customers: 15
+Timed-out customers: 0
 
 ------------------------------------------
 
 Clock time : 9
 Number of customers currently being served: 10
-Number of customers currently in the queue: 10
-Fulfilled customers: 3
-Unfulfilled customers: 5
-Timed-out customers: 1
+Number of customers currently in the queue: 8
+Fulfilled customers: 6
+Unfulfilled customers: 15
+Timed-out customers: 0
 
 ------------------------------------------
 
 Clock time : 10
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 4
-Unfulfilled customers: 9
-Timed-out customers: 1
+Fulfilled customers: 6
+Unfulfilled customers: 16
+Timed-out customers: 0
 
 ------------------------------------------
 
 Clock time : 11
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 5
-Unfulfilled customers: 9
-Timed-out customers: 2
+Fulfilled customers: 6
+Unfulfilled customers: 21
+Timed-out customers: 0
 
 ------------------------------------------
 
 Clock time : 12
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 7
-Unfulfilled customers: 10
-Timed-out customers: 2
+Fulfilled customers: 6
+Unfulfilled customers: 27
+Timed-out customers: 0
 
 ------------------------------------------
 
@@ -134,62 +136,62 @@ Clock time : 13
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
 Fulfilled customers: 7
-Unfulfilled customers: 10
-Timed-out customers: 2
+Unfulfilled customers: 27
+Timed-out customers: 1
 
 ------------------------------------------
 
 Clock time : 14
 Number of customers currently being served: 10
-Number of customers currently in the queue: 7
-Fulfilled customers: 9
-Unfulfilled customers: 10
-Timed-out customers: 4
+Number of customers currently in the queue: 10
+Fulfilled customers: 8
+Unfulfilled customers: 32
+Timed-out customers: 1
 
 ------------------------------------------
 
 Clock time : 15
 Number of customers currently being served: 10
-Number of customers currently in the queue: 8
-Fulfilled customers: 11
-Unfulfilled customers: 10
-Timed-out customers: 4
+Number of customers currently in the queue: 10
+Fulfilled customers: 8
+Unfulfilled customers: 37
+Timed-out customers: 1
 
 ------------------------------------------
 
 Clock time : 16
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 12
-Unfulfilled customers: 10
-Timed-out customers: 4
+Fulfilled customers: 9
+Unfulfilled customers: 41
+Timed-out customers: 1
 
 ------------------------------------------
 
 Clock time : 17
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 13
-Unfulfilled customers: 10
-Timed-out customers: 4
+Fulfilled customers: 11
+Unfulfilled customers: 44
+Timed-out customers: 1
 
 ------------------------------------------
 
 Clock time : 18
 Number of customers currently being served: 10
-Number of customers currently in the queue: 9
-Fulfilled customers: 14
-Unfulfilled customers: 10
-Timed-out customers: 4
+Number of customers currently in the queue: 10
+Fulfilled customers: 12
+Unfulfilled customers: 47
+Timed-out customers: 1
 
 ------------------------------------------
 
 Clock time : 19
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 14
-Unfulfilled customers: 11
-Timed-out customers: 5
+Fulfilled customers: 13
+Unfulfilled customers: 52
+Timed-out customers: 1
 
 ------------------------------------------
 
@@ -197,8 +199,8 @@ Clock time : 20
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
 Fulfilled customers: 16
-Unfulfilled customers: 11
-Timed-out customers: 5
+Unfulfilled customers: 55
+Timed-out customers: 1
 
 ------------------------------------------
 
@@ -206,44 +208,44 @@ Clock time : 21
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
 Fulfilled customers: 16
-Unfulfilled customers: 12
-Timed-out customers: 6
+Unfulfilled customers: 61
+Timed-out customers: 1
 
 ------------------------------------------
 
 Clock time : 22
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 20
-Unfulfilled customers: 12
-Timed-out customers: 6
+Fulfilled customers: 16
+Unfulfilled customers: 63
+Timed-out customers: 1
 
 ------------------------------------------
 
 Clock time : 23
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 20
-Unfulfilled customers: 13
-Timed-out customers: 6
+Fulfilled customers: 17
+Unfulfilled customers: 66
+Timed-out customers: 1
 
 ------------------------------------------
 
 Clock time : 24
 Number of customers currently being served: 10
-Number of customers currently in the queue: 9
-Fulfilled customers: 20
-Unfulfilled customers: 13
-Timed-out customers: 7
+Number of customers currently in the queue: 10
+Fulfilled customers: 18
+Unfulfilled customers: 66
+Timed-out customers: 2
 
 ------------------------------------------
 
 Clock time : 25
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 20
-Unfulfilled customers: 13
-Timed-out customers: 7
+Fulfilled customers: 18
+Unfulfilled customers: 68
+Timed-out customers: 2
 
 ------------------------------------------
 
@@ -251,161 +253,161 @@ Clock time : 26
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
 Fulfilled customers: 20
-Unfulfilled customers: 14
-Timed-out customers: 7
+Unfulfilled customers: 70
+Timed-out customers: 2
 
 ------------------------------------------
 
 Clock time : 27
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 20
-Unfulfilled customers: 14
-Timed-out customers: 8
+Fulfilled customers: 22
+Unfulfilled customers: 72
+Timed-out customers: 2
 
 ------------------------------------------
 
 Clock time : 28
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 20
-Unfulfilled customers: 16
-Timed-out customers: 9
+Fulfilled customers: 22
+Unfulfilled customers: 76
+Timed-out customers: 2
 
 ------------------------------------------
 
 Clock time : 29
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 20
-Unfulfilled customers: 19
-Timed-out customers: 9
+Fulfilled customers: 25
+Unfulfilled customers: 77
+Timed-out customers: 2
 
 ------------------------------------------
 
 Clock time : 30
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 20
-Unfulfilled customers: 22
-Timed-out customers: 9
+Fulfilled customers: 25
+Unfulfilled customers: 82
+Timed-out customers: 2
 
 ------------------------------------------
 
 Clock time : 31
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 22
-Unfulfilled customers: 24
-Timed-out customers: 9
+Fulfilled customers: 26
+Unfulfilled customers: 84
+Timed-out customers: 2
 
 ------------------------------------------
 
 Clock time : 32
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 23
-Unfulfilled customers: 26
-Timed-out customers: 9
+Fulfilled customers: 26
+Unfulfilled customers: 88
+Timed-out customers: 2
 
 ------------------------------------------
 
 Clock time : 33
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 25
-Unfulfilled customers: 27
-Timed-out customers: 10
+Fulfilled customers: 28
+Unfulfilled customers: 90
+Timed-out customers: 2
 
 ------------------------------------------
 
 Clock time : 34
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 25
-Unfulfilled customers: 27
-Timed-out customers: 10
+Fulfilled customers: 28
+Unfulfilled customers: 95
+Timed-out customers: 2
 
 ------------------------------------------
 
 Clock time : 35
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 25
-Unfulfilled customers: 29
-Timed-out customers: 11
+Fulfilled customers: 29
+Unfulfilled customers: 97
+Timed-out customers: 2
 
 ------------------------------------------
 
 Clock time : 36
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 25
-Unfulfilled customers: 33
-Timed-out customers: 12
+Fulfilled customers: 30
+Unfulfilled customers: 100
+Timed-out customers: 2
 
 ------------------------------------------
 
 Clock time : 37
 Number of customers currently being served: 10
-Number of customers currently in the queue: 9
-Fulfilled customers: 28
-Unfulfilled customers: 33
-Timed-out customers: 12
+Number of customers currently in the queue: 10
+Fulfilled customers: 30
+Unfulfilled customers: 103
+Timed-out customers: 2
 
 ------------------------------------------
 
 Clock time : 38
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 29
-Unfulfilled customers: 34
-Timed-out customers: 12
+Fulfilled customers: 31
+Unfulfilled customers: 107
+Timed-out customers: 3
 
 ------------------------------------------
 
 Clock time : 39
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 31
-Unfulfilled customers: 36
-Timed-out customers: 12
+Fulfilled customers: 32
+Unfulfilled customers: 109
+Timed-out customers: 3
 
 ------------------------------------------
 
 Clock time : 40
 Number of customers currently being served: 10
-Number of customers currently in the queue: 8
-Fulfilled customers: 33
-Unfulfilled customers: 36
-Timed-out customers: 13
+Number of customers currently in the queue: 9
+Fulfilled customers: 35
+Unfulfilled customers: 109
+Timed-out customers: 4
 
 ------------------------------------------
 
 Clock time : 41
 Number of customers currently being served: 10
-Number of customers currently in the queue: 8
-Fulfilled customers: 34
-Unfulfilled customers: 36
-Timed-out customers: 13
+Number of customers currently in the queue: 10
+Fulfilled customers: 36
+Unfulfilled customers: 117
+Timed-out customers: 4
 
 ------------------------------------------
 
 Clock time : 42
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 35
-Unfulfilled customers: 36
-Timed-out customers: 13
+Fulfilled customers: 36
+Unfulfilled customers: 121
+Timed-out customers: 4
 
 ------------------------------------------
 
 Clock time : 43
 Number of customers currently being served: 10
-Number of customers currently in the queue: 8
-Fulfilled customers: 36
-Unfulfilled customers: 36
-Timed-out customers: 14
+Number of customers currently in the queue: 10
+Fulfilled customers: 37
+Unfulfilled customers: 126
+Timed-out customers: 4
 
 ------------------------------------------
 
@@ -413,44 +415,44 @@ Clock time : 44
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
 Fulfilled customers: 38
-Unfulfilled customers: 36
-Timed-out customers: 14
+Unfulfilled customers: 127
+Timed-out customers: 4
 
 ------------------------------------------
 
 Clock time : 45
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 40
-Unfulfilled customers: 38
-Timed-out customers: 14
+Fulfilled customers: 38
+Unfulfilled customers: 130
+Timed-out customers: 4
 
 ------------------------------------------
 
 Clock time : 46
 Number of customers currently being served: 10
-Number of customers currently in the queue: 8
-Fulfilled customers: 41
-Unfulfilled customers: 38
-Timed-out customers: 16
+Number of customers currently in the queue: 10
+Fulfilled customers: 39
+Unfulfilled customers: 134
+Timed-out customers: 4
 
 ------------------------------------------
 
 Clock time : 47
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 42
-Unfulfilled customers: 39
-Timed-out customers: 17
+Fulfilled customers: 40
+Unfulfilled customers: 134
+Timed-out customers: 4
 
 ------------------------------------------
 
 Clock time : 48
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 43
-Unfulfilled customers: 39
-Timed-out customers: 17
+Fulfilled customers: 41
+Unfulfilled customers: 136
+Timed-out customers: 5
 
 ------------------------------------------
 
@@ -458,26 +460,26 @@ Clock time : 49
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
 Fulfilled customers: 43
-Unfulfilled customers: 43
-Timed-out customers: 17
+Unfulfilled customers: 137
+Timed-out customers: 5
 
 ------------------------------------------
 
 Clock time : 50
 Number of customers currently being served: 10
-Number of customers currently in the queue: 9
-Fulfilled customers: 45
-Unfulfilled customers: 43
-Timed-out customers: 17
+Number of customers currently in the queue: 10
+Fulfilled customers: 44
+Unfulfilled customers: 142
+Timed-out customers: 5
 
 ------------------------------------------
 
 Clock time : 51
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 45
-Unfulfilled customers: 44
-Timed-out customers: 17
+Fulfilled customers: 44
+Unfulfilled customers: 144
+Timed-out customers: 6
 
 ------------------------------------------
 
@@ -485,53 +487,53 @@ Clock time : 52
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
 Fulfilled customers: 45
-Unfulfilled customers: 49
-Timed-out customers: 17
+Unfulfilled customers: 149
+Timed-out customers: 6
 
 ------------------------------------------
 
 Clock time : 53
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 45
-Unfulfilled customers: 53
-Timed-out customers: 17
+Fulfilled customers: 46
+Unfulfilled customers: 154
+Timed-out customers: 6
 
 ------------------------------------------
 
 Clock time : 54
 Number of customers currently being served: 10
-Number of customers currently in the queue: 9
-Fulfilled customers: 46
-Unfulfilled customers: 53
-Timed-out customers: 17
+Number of customers currently in the queue: 10
+Fulfilled customers: 49
+Unfulfilled customers: 158
+Timed-out customers: 6
 
 ------------------------------------------
 
 Clock time : 55
 Number of customers currently being served: 10
-Number of customers currently in the queue: 8
-Fulfilled customers: 48
-Unfulfilled customers: 53
-Timed-out customers: 17
+Number of customers currently in the queue: 10
+Fulfilled customers: 49
+Unfulfilled customers: 165
+Timed-out customers: 6
 
 ------------------------------------------
 
 Clock time : 56
 Number of customers currently being served: 10
-Number of customers currently in the queue: 8
-Fulfilled customers: 48
-Unfulfilled customers: 53
-Timed-out customers: 19
+Number of customers currently in the queue: 10
+Fulfilled customers: 49
+Unfulfilled customers: 168
+Timed-out customers: 6
 
 ------------------------------------------
 
 Clock time : 57
 Number of customers currently being served: 10
-Number of customers currently in the queue: 9
+Number of customers currently in the queue: 10
 Fulfilled customers: 50
-Unfulfilled customers: 53
-Timed-out customers: 19
+Unfulfilled customers: 171
+Timed-out customers: 6
 
 ------------------------------------------
 
@@ -539,8 +541,8 @@ Clock time : 58
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
 Fulfilled customers: 51
-Unfulfilled customers: 53
-Timed-out customers: 20
+Unfulfilled customers: 174
+Timed-out customers: 6
 
 ------------------------------------------
 
@@ -548,8 +550,8 @@ Clock time : 59
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
 Fulfilled customers: 51
-Unfulfilled customers: 56
-Timed-out customers: 20
+Unfulfilled customers: 179
+Timed-out customers: 6
 
 ------------------------------------------
 
@@ -557,80 +559,80 @@ Clock time : 60
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
 Fulfilled customers: 51
-Unfulfilled customers: 60
-Timed-out customers: 20
+Unfulfilled customers: 180
+Timed-out customers: 7
 
 ------------------------------------------
 
 Clock time : 61
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 52
-Unfulfilled customers: 60
-Timed-out customers: 22
+Fulfilled customers: 53
+Unfulfilled customers: 183
+Timed-out customers: 7
 
 ------------------------------------------
 
 Clock time : 62
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 52
-Unfulfilled customers: 60
-Timed-out customers: 22
+Fulfilled customers: 54
+Unfulfilled customers: 183
+Timed-out customers: 7
 
 ------------------------------------------
 
 Clock time : 63
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 53
-Unfulfilled customers: 61
-Timed-out customers: 22
+Fulfilled customers: 54
+Unfulfilled customers: 190
+Timed-out customers: 7
 
 ------------------------------------------
 
 Clock time : 64
 Number of customers currently being served: 10
-Number of customers currently in the queue: 5
+Number of customers currently in the queue: 10
 Fulfilled customers: 56
-Unfulfilled customers: 61
-Timed-out customers: 24
+Unfulfilled customers: 195
+Timed-out customers: 8
 
 ------------------------------------------
 
 Clock time : 65
 Number of customers currently being served: 10
-Number of customers currently in the queue: 5
-Fulfilled customers: 56
-Unfulfilled customers: 61
-Timed-out customers: 24
+Number of customers currently in the queue: 10
+Fulfilled customers: 57
+Unfulfilled customers: 200
+Timed-out customers: 8
 
 ------------------------------------------
 
 Clock time : 66
 Number of customers currently being served: 10
-Number of customers currently in the queue: 6
-Fulfilled customers: 57
-Unfulfilled customers: 61
-Timed-out customers: 24
+Number of customers currently in the queue: 9
+Fulfilled customers: 60
+Unfulfilled customers: 200
+Timed-out customers: 8
 
 ------------------------------------------
 
 Clock time : 67
 Number of customers currently being served: 10
-Number of customers currently in the queue: 9
-Fulfilled customers: 58
-Unfulfilled customers: 61
-Timed-out customers: 24
+Number of customers currently in the queue: 10
+Fulfilled customers: 60
+Unfulfilled customers: 204
+Timed-out customers: 8
 
 ------------------------------------------
 
 Clock time : 68
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 58
-Unfulfilled customers: 64
-Timed-out customers: 24
+Fulfilled customers: 61
+Unfulfilled customers: 205
+Timed-out customers: 8
 
 ------------------------------------------
 
@@ -638,8 +640,8 @@ Clock time : 69
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
 Fulfilled customers: 61
-Unfulfilled customers: 64
-Timed-out customers: 24
+Unfulfilled customers: 211
+Timed-out customers: 9
 
 ------------------------------------------
 
@@ -647,8 +649,8 @@ Clock time : 70
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
 Fulfilled customers: 62
-Unfulfilled customers: 66
-Timed-out customers: 24
+Unfulfilled customers: 215
+Timed-out customers: 10
 
 ------------------------------------------
 
@@ -656,188 +658,188 @@ Clock time : 71
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
 Fulfilled customers: 62
-Unfulfilled customers: 69
-Timed-out customers: 24
+Unfulfilled customers: 219
+Timed-out customers: 10
 
 ------------------------------------------
 
 Clock time : 72
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 63
-Unfulfilled customers: 72
-Timed-out customers: 24
+Fulfilled customers: 65
+Unfulfilled customers: 222
+Timed-out customers: 10
 
 ------------------------------------------
 
 Clock time : 73
 Number of customers currently being served: 10
-Number of customers currently in the queue: 8
-Fulfilled customers: 64
-Unfulfilled customers: 72
-Timed-out customers: 25
+Number of customers currently in the queue: 10
+Fulfilled customers: 66
+Unfulfilled customers: 224
+Timed-out customers: 10
 
 ------------------------------------------
 
 Clock time : 74
 Number of customers currently being served: 10
-Number of customers currently in the queue: 7
-Fulfilled customers: 65
-Unfulfilled customers: 72
-Timed-out customers: 26
+Number of customers currently in the queue: 10
+Fulfilled customers: 68
+Unfulfilled customers: 226
+Timed-out customers: 10
 
 ------------------------------------------
 
 Clock time : 75
 Number of customers currently being served: 10
-Number of customers currently in the queue: 9
-Fulfilled customers: 66
-Unfulfilled customers: 72
-Timed-out customers: 26
+Number of customers currently in the queue: 10
+Fulfilled customers: 69
+Unfulfilled customers: 229
+Timed-out customers: 10
 
 ------------------------------------------
 
 Clock time : 76
 Number of customers currently being served: 10
-Number of customers currently in the queue: 7
-Fulfilled customers: 68
-Unfulfilled customers: 72
-Timed-out customers: 26
+Number of customers currently in the queue: 10
+Fulfilled customers: 69
+Unfulfilled customers: 232
+Timed-out customers: 10
 
 ------------------------------------------
 
 Clock time : 77
 Number of customers currently being served: 10
-Number of customers currently in the queue: 9
-Fulfilled customers: 68
-Unfulfilled customers: 72
-Timed-out customers: 27
+Number of customers currently in the queue: 10
+Fulfilled customers: 69
+Unfulfilled customers: 237
+Timed-out customers: 10
 
 ------------------------------------------
 
 Clock time : 78
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 68
-Unfulfilled customers: 75
-Timed-out customers: 27
+Fulfilled customers: 69
+Unfulfilled customers: 242
+Timed-out customers: 10
 
 ------------------------------------------
 
 Clock time : 79
 Number of customers currently being served: 10
-Number of customers currently in the queue: 7
-Fulfilled customers: 72
-Unfulfilled customers: 75
-Timed-out customers: 27
+Number of customers currently in the queue: 10
+Fulfilled customers: 70
+Unfulfilled customers: 246
+Timed-out customers: 10
 
 ------------------------------------------
 
 Clock time : 80
 Number of customers currently being served: 10
-Number of customers currently in the queue: 7
-Fulfilled customers: 73
-Unfulfilled customers: 75
-Timed-out customers: 27
+Number of customers currently in the queue: 10
+Fulfilled customers: 70
+Unfulfilled customers: 251
+Timed-out customers: 10
 
 ------------------------------------------
 
 Clock time : 81
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 73
-Unfulfilled customers: 75
-Timed-out customers: 27
+Fulfilled customers: 72
+Unfulfilled customers: 256
+Timed-out customers: 10
 
 ------------------------------------------
 
 Clock time : 82
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 73
-Unfulfilled customers: 80
-Timed-out customers: 27
+Fulfilled customers: 72
+Unfulfilled customers: 260
+Timed-out customers: 10
 
 ------------------------------------------
 
 Clock time : 83
 Number of customers currently being served: 10
-Number of customers currently in the queue: 9
-Fulfilled customers: 74
-Unfulfilled customers: 80
-Timed-out customers: 28
+Number of customers currently in the queue: 10
+Fulfilled customers: 72
+Unfulfilled customers: 264
+Timed-out customers: 12
 
 ------------------------------------------
 
 Clock time : 84
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 76
-Unfulfilled customers: 81
-Timed-out customers: 28
+Fulfilled customers: 73
+Unfulfilled customers: 270
+Timed-out customers: 13
 
 ------------------------------------------
 
 Clock time : 85
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 77
-Unfulfilled customers: 81
-Timed-out customers: 28
+Fulfilled customers: 73
+Unfulfilled customers: 274
+Timed-out customers: 13
 
 ------------------------------------------
 
 Clock time : 86
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 77
-Unfulfilled customers: 84
-Timed-out customers: 29
+Fulfilled customers: 76
+Unfulfilled customers: 275
+Timed-out customers: 13
 
 ------------------------------------------
 
 Clock time : 87
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 77
-Unfulfilled customers: 84
-Timed-out customers: 29
+Fulfilled customers: 76
+Unfulfilled customers: 280
+Timed-out customers: 13
 
 ------------------------------------------
 
 Clock time : 88
 Number of customers currently being served: 10
-Number of customers currently in the queue: 9
-Fulfilled customers: 78
-Unfulfilled customers: 84
-Timed-out customers: 29
+Number of customers currently in the queue: 10
+Fulfilled customers: 76
+Unfulfilled customers: 285
+Timed-out customers: 13
 
 ------------------------------------------
 
 Clock time : 89
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 78
-Unfulfilled customers: 88
-Timed-out customers: 29
+Fulfilled customers: 77
+Unfulfilled customers: 287
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 90
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 79
-Unfulfilled customers: 90
-Timed-out customers: 29
+Fulfilled customers: 77
+Unfulfilled customers: 290
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 91
 Number of customers currently being served: 10
-Number of customers currently in the queue: 8
-Fulfilled customers: 81
-Unfulfilled customers: 90
-Timed-out customers: 30
+Number of customers currently in the queue: 10
+Fulfilled customers: 79
+Unfulfilled customers: 295
+Timed-out customers: 14
 
 ------------------------------------------
 
@@ -845,71 +847,71 @@ Clock time : 92
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
 Fulfilled customers: 81
-Unfulfilled customers: 93
-Timed-out customers: 30
+Unfulfilled customers: 298
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 93
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 84
-Unfulfilled customers: 95
-Timed-out customers: 30
+Fulfilled customers: 81
+Unfulfilled customers: 302
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 94
 Number of customers currently being served: 10
-Number of customers currently in the queue: 8
-Fulfilled customers: 84
-Unfulfilled customers: 95
-Timed-out customers: 32
+Number of customers currently in the queue: 10
+Fulfilled customers: 81
+Unfulfilled customers: 305
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 95
 Number of customers currently being served: 10
-Number of customers currently in the queue: 4
-Fulfilled customers: 87
-Unfulfilled customers: 95
-Timed-out customers: 33
+Number of customers currently in the queue: 10
+Fulfilled customers: 82
+Unfulfilled customers: 308
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 96
 Number of customers currently being served: 10
-Number of customers currently in the queue: 8
-Fulfilled customers: 88
-Unfulfilled customers: 95
-Timed-out customers: 33
+Number of customers currently in the queue: 10
+Fulfilled customers: 83
+Unfulfilled customers: 313
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 97
 Number of customers currently being served: 10
-Number of customers currently in the queue: 8
-Fulfilled customers: 89
-Unfulfilled customers: 95
-Timed-out customers: 33
+Number of customers currently in the queue: 10
+Fulfilled customers: 84
+Unfulfilled customers: 315
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 98
 Number of customers currently being served: 10
-Number of customers currently in the queue: 8
-Fulfilled customers: 90
-Unfulfilled customers: 95
-Timed-out customers: 33
+Number of customers currently in the queue: 10
+Fulfilled customers: 84
+Unfulfilled customers: 323
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 99
 Number of customers currently being served: 10
 Number of customers currently in the queue: 10
-Fulfilled customers: 90
-Unfulfilled customers: 95
-Timed-out customers: 34
+Fulfilled customers: 86
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
@@ -922,227 +924,218 @@ ______________ CLOSING TIME ______________
 
 Clock time : 100
 Number of customers currently being served: 10
-Number of customers currently in the queue: 9
-Fulfilled customers: 91
-Unfulfilled customers: 95
-Timed-out customers: 34
+Number of customers currently in the queue: 10
+Fulfilled customers: 86
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 101
 Number of customers currently being served: 10
-Number of customers currently in the queue: 8
-Fulfilled customers: 91
-Unfulfilled customers: 95
-Timed-out customers: 35
+Number of customers currently in the queue: 9
+Fulfilled customers: 87
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 102
 Number of customers currently being served: 10
-Number of customers currently in the queue: 6
-Fulfilled customers: 93
-Unfulfilled customers: 95
-Timed-out customers: 35
+Number of customers currently in the queue: 7
+Fulfilled customers: 89
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 103
 Number of customers currently being served: 10
-Number of customers currently in the queue: 5
-Fulfilled customers: 94
-Unfulfilled customers: 95
-Timed-out customers: 35
+Number of customers currently in the queue: 6
+Fulfilled customers: 90
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 104
 Number of customers currently being served: 10
 Number of customers currently in the queue: 5
-Fulfilled customers: 94
-Unfulfilled customers: 95
-Timed-out customers: 35
+Fulfilled customers: 91
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 105
 Number of customers currently being served: 10
-Number of customers currently in the queue: 4
-Fulfilled customers: 95
-Unfulfilled customers: 95
-Timed-out customers: 35
+Number of customers currently in the queue: 5
+Fulfilled customers: 91
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 106
 Number of customers currently being served: 10
-Number of customers currently in the queue: 4
-Fulfilled customers: 95
-Unfulfilled customers: 95
-Timed-out customers: 35
+Number of customers currently in the queue: 2
+Fulfilled customers: 94
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 107
-Number of customers currently being served: 10
-Number of customers currently in the queue: 1
-Fulfilled customers: 98
-Unfulfilled customers: 95
-Timed-out customers: 35
+Number of customers currently being served: 9
+Number of customers currently in the queue: 0
+Fulfilled customers: 97
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 108
-Number of customers currently being served: 10
+Number of customers currently being served: 9
 Number of customers currently in the queue: 0
-Fulfilled customers: 99
-Unfulfilled customers: 95
-Timed-out customers: 35
+Fulfilled customers: 97
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 109
-Number of customers currently being served: 8
+Number of customers currently being served: 9
 Number of customers currently in the queue: 0
-Fulfilled customers: 101
-Unfulfilled customers: 95
-Timed-out customers: 35
+Fulfilled customers: 97
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 110
-Number of customers currently being served: 8
+Number of customers currently being served: 9
 Number of customers currently in the queue: 0
-Fulfilled customers: 101
-Unfulfilled customers: 95
-Timed-out customers: 35
+Fulfilled customers: 97
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 111
-Number of customers currently being served: 8
+Number of customers currently being served: 9
 Number of customers currently in the queue: 0
-Fulfilled customers: 101
-Unfulfilled customers: 95
-Timed-out customers: 35
+Fulfilled customers: 97
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 112
-Number of customers currently being served: 7
+Number of customers currently being served: 6
 Number of customers currently in the queue: 0
-Fulfilled customers: 102
-Unfulfilled customers: 95
-Timed-out customers: 35
+Fulfilled customers: 100
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 113
-Number of customers currently being served: 5
+Number of customers currently being served: 6
 Number of customers currently in the queue: 0
-Fulfilled customers: 104
-Unfulfilled customers: 95
-Timed-out customers: 35
+Fulfilled customers: 100
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 114
-Number of customers currently being served: 5
+Number of customers currently being served: 6
 Number of customers currently in the queue: 0
-Fulfilled customers: 104
-Unfulfilled customers: 95
-Timed-out customers: 35
+Fulfilled customers: 100
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 115
-Number of customers currently being served: 5
+Number of customers currently being served: 6
 Number of customers currently in the queue: 0
-Fulfilled customers: 104
-Unfulfilled customers: 95
-Timed-out customers: 35
+Fulfilled customers: 100
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 116
 Number of customers currently being served: 5
 Number of customers currently in the queue: 0
-Fulfilled customers: 104
-Unfulfilled customers: 95
-Timed-out customers: 35
+Fulfilled customers: 101
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 117
-Number of customers currently being served: 3
+Number of customers currently being served: 5
 Number of customers currently in the queue: 0
-Fulfilled customers: 106
-Unfulfilled customers: 95
-Timed-out customers: 35
+Fulfilled customers: 101
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 118
-Number of customers currently being served: 3
+Number of customers currently being served: 4
 Number of customers currently in the queue: 0
-Fulfilled customers: 106
-Unfulfilled customers: 95
-Timed-out customers: 35
+Fulfilled customers: 102
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 119
-Number of customers currently being served: 2
+Number of customers currently being served: 3
 Number of customers currently in the queue: 0
-Fulfilled customers: 107
-Unfulfilled customers: 95
-Timed-out customers: 35
+Fulfilled customers: 103
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 120
-Number of customers currently being served: 1
+Number of customers currently being served: 3
 Number of customers currently in the queue: 0
-Fulfilled customers: 108
-Unfulfilled customers: 95
-Timed-out customers: 35
+Fulfilled customers: 103
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 121
-Number of customers currently being served: 1
+Number of customers currently being served: 2
 Number of customers currently in the queue: 0
-Fulfilled customers: 108
-Unfulfilled customers: 95
-Timed-out customers: 35
+Fulfilled customers: 104
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 Clock time : 122
-Number of customers currently being served: 1
+Number of customers currently being served: 2
 Number of customers currently in the queue: 0
-Fulfilled customers: 108
-Unfulfilled customers: 95
-Timed-out customers: 35
-
-------------------------------------------
-
-Clock time : 123
-Number of customers currently being served: 1
-Number of customers currently in the queue: 0
-Fulfilled customers: 108
-Unfulfilled customers: 95
-Timed-out customers: 35
+Fulfilled customers: 104
+Unfulfilled customers: 328
+Timed-out customers: 14
 
 ------------------------------------------
 
 FINAL RESULTS:
 
-Fulfilled customers: 108.00
-Unfulfilled customers: 95.00
-Timed-out customers: 35.00
+Fulfilled customers: 104.00
+Unfulfilled customers: 328.00
+Timed-out customers: 14.00
 
-Time it took from closing time until all remaining customers were served: 24.00
+Time it took from closing time until all remaining customers were served: 23.00
 
-Average waiting time (in the queue) for fulfilled customers: 5.90
+Average waiting time (in the queue) for fulfilled customers: 7.75
 

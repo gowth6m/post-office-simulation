@@ -11,19 +11,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
-/* Function that read one parameter from the input file with the correct format. */
-int readParameter(FILE *fp, char *parameterName, int *parameter)
+#define MAX_STRING_SIZE 40
+
+/* Function to read lines and ignore lines that starts with # */
+int readParameter(FILE * fp, char * parameterName, int * parameter)
 {
-    char s[40];
-    int auxSize = strlen(parameterName);
+    char s[MAX_STRING_SIZE];
+    int c, auxSize = strlen(parameterName);
 
-    /* skipping first line to write details about input file */
-    fscanf(fp, "%*[^\n]"); 
-    // fscanf(fp, "%*[^\n]"); 
+    /* loop to ignore comments */
+    while(1)
+    {
+        /* read the first char of the line */
+        if((c = fgetc(fp)) == EOF)
+            return -1;
+
+        /* ignore empty lines or spaces */
+        if(c == '\n' || c == '\r' || isspace(c))
+        {
+            continue;
+        }
+        /* exit loop if this line is not a comment */
+        if(c != '#')
+        {
+            s[0] = (char) c;
+            break;
+        }
+
+        /* otherwise ignore this line  */
+        fscanf(fp, "%*[^\n]\n");
+    }
 
     /* read the parameter*/
-    if(fscanf(fp, "%s %d", s, parameter) < 2)
+    if(fscanf(fp, "%s %d", (s+1), parameter) < 2)
     {
         return -1;
     }
@@ -33,9 +55,9 @@ int readParameter(FILE *fp, char *parameterName, int *parameter)
     {
         return -1;
     }
-
     return 0;
 }
+
 
 /* Function to read all the parameters from the input file */
 int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int *closingTime, int *maxNewCustomers, int *minNewCustomers, 
@@ -177,6 +199,11 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
         return -1;
     }
 
+    if(*standardDeviationForNewCustomers > *meanForNewCustomers)
+    {
+        return -6;
+    }
+
     /* read the meanForServingTime parameter */
     if(readParameter(fp, "meanForServingTime", meanForServingTime) == -1)
     {
@@ -191,6 +218,12 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
         return -1;
     }
 
+    if(*standardDeviationForServingTime > *meanForServingTime)
+    {
+        return -6;
+    }
+
+
     /* read the meanForWaitingTolerance parameter */
     if(readParameter(fp, "meanForWaitingTolerance", meanForWaitingTolerance) == -1)
     {
@@ -204,6 +237,12 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
         /*wrong input file format*/
         return -1;
     }
+
+    if(*standardDeviationForWaitingTolerance > *meanForWaitingTolerance)
+    {
+        return -6;
+    }
+
 
     /* close the file */
     fclose(fp);
@@ -222,7 +261,7 @@ void printReadParameters(int maxQueLen, int numServicePoints, int closingTime, i
         printf("maxQueueLength %d\n", maxQueLen);
         printf("numServicePoints %d\n", numServicePoints);  
         printf("closingTime %d\n", closingTime);
-        printf("distributionType %d\n", distributionType);
+        printf("distributionType %d (Uniform distribution)\n", distributionType);
         printf("\n");
         printf("maxNewCustomers %d\n", maxNewCustomers);
         printf("minNewCustomers %d\n", minNewCustomers);
@@ -236,7 +275,7 @@ void printReadParameters(int maxQueLen, int numServicePoints, int closingTime, i
         printf("maxQueueLength %d\n", maxQueLen);
         printf("numServicePoints %d\n", numServicePoints);  
         printf("closingTime %d\n", closingTime);
-        printf("distributionType %d\n", distributionType);
+        printf("distributionType %d (Gaussian distribution)\n", distributionType);
         printf("\n");
         printf("meanForNewCustomers %d\n", meanForNewCustomers);
         printf("standardDeviationForNewCustomers %d\n", standardDeviationForNewCustomers);

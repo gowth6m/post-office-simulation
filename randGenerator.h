@@ -11,10 +11,10 @@
 #ifndef __RAND_GENERATOR_H
 #define __RAND_GENERATOR_H
 
-void swap(int *a, int *b);
+/* Function that returns a random integer with uniform distribution in the given range */
+int getUniformRandNum(int l, int r);
 
-int random_integer(int l, int r);
-
-long double g_rand (long double mi, long double sigma);
+/* Function that returns a random double from a Gaussian distribution */
+long double getGaussianRandNum (long double mi, long double sigma);
 
 #endif

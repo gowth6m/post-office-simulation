@@ -5,13 +5,12 @@
 *
 * Autor:        Gowthaman Ravindrathas
 *
-* Date:         30.01.2021
+* Date:         01.02.2021
 */
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
 #include <math.h>
-
 
 /* Function to swap two integer variables */
 void swap(int *a, int *b)
@@ -22,15 +21,18 @@ void swap(int *a, int *b)
 }
 
 /* Function that returns a random integer with uniform distribution in the given range */
-int random_integer(int l, int r)
+int getUniformRandNum(int l, int r)
 {
     if (l > r)
+    {
         swap(&l, &r);
+    }
     return rand() % (r - l + 1) + l;
 }
 
 /* Function that returns a random double from a Gaussian distribution */
-long double g_rand (long double mi, long double sigma) {
+long double getGaussianRandNum (long double mi, long double sigma) 
+{
     long double v1, v2, s, result;
 
     v1 = ((long double) rand() / (RAND_MAX)) * 2 - 1;
@@ -39,7 +41,7 @@ long double g_rand (long double mi, long double sigma) {
 
     if (s == 0 || s >= 1) 
     {
-        return g_rand (mi, sigma);
+        return getGaussianRandNum (mi, sigma);
     }
 
     result = v1*sqrt(-2.0* log(s)/s);
