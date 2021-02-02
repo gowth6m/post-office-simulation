@@ -9,7 +9,7 @@ CFLAGS  = -ansi -g
 # the build target executable:
 TARGET = simQ
 
-OBJS = simulation.o fileManager.o customerQueue.o
+OBJS = simulation.o fileManager.o customerQueue.o randGenerator.o
 
 all: $(TARGET)
 
@@ -24,6 +24,9 @@ fileManager.o: fileManager.c
 
 customerQueue.o: customerQueue.c
 	$(CC) -c $(CFLAGS) customerQueue.c
+
+randGenerator.o: randGenerator.c
+	$(CC) -c $(CFLAGS) randGenerator.c
 
 clean:
 	rm $(TARGET)

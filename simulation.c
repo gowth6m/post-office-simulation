@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include "customerQueue.h"
 #include "simulation.h"
+#include "randGenerator.h"
 
 /* customers related counters */
 int fulfilledCustomers;
@@ -26,21 +27,21 @@ int avgTimedOutCust = 0;
 int avgTimeleft = 0;
 int avgQueueWaitTime = 0;
 
-/* Function to swap two integer variables */
-void swap(int *a, int *b)
-{
-    (*a) = (*a) + (*b);
-    (*b) = (*a) - (*b);
-    (*a) = (*a) - (*b);
-}
+// /* Function to swap two integer variables */
+// void swap(int *a, int *b)
+// {
+//     (*a) = (*a) + (*b);
+//     (*b) = (*a) - (*b);
+//     (*a) = (*a) - (*b);
+// }
 
-/* Function that returns a random integer with uniform distribution in the given range */
-int random_integer(int l, int r)
-{
-    if (l > r)
-        swap(&l, &r);
-    return rand() % (r - l + 1) + l;
-}
+// /* Function that returns a random integer with uniform distribution in the given range */
+// int random_integer(int l, int r)
+// {
+//     if (l > r)
+//         swap(&l, &r);
+//     return rand() % (r - l + 1) + l;
+// }
 
 /* Function to add random number of customers to the queue */
 void addCustomers(Queue *queue, int maxQueLen, int maxNewCustomers, int minNewCustomers, int maxServeTime, int maxWaitingTolerance)

@@ -12,9 +12,14 @@
 #define __FILE_MANAGER_H
 
 /* Function to read all the parameters from the input file */
-int getInfoFromInput(char *fileName, int * maxQueLen, int * numServicePoints, int * closingTime, int * maxNewCustomers, int * minNewCustomers, int * maxServeTime, int * maxWaitingTolerance);
+int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int *closingTime, int *maxNewCustomers, 
+    int *minNewCustomers, int *maxServeTime, int *maxWaitingTolerance, int *distributionType, int *meanForNewCustomers,
+    int *standardDeviationForNewCustomers, int *meanForServingTime, int *standardDeviationForServingTime, 
+    int *meanForWaitingTolerance, int *standardDeviationForWaitingTolerance);
 
 /*Function to print the read parameters */
-void printReadParameters(int maxQueLen, int numServicePoints, int closingTime, int maxNewCustomers, int minNewCustomers, int maxServeTime, int maxWaitingTolerance);
+void printReadParameters(int maxQueLen, int numServicePoints, int closingTime, int maxNewCustomers, int minNewCustomers, int maxServeTime,
+    int maxWaitingTolerance, int distributionType, int meanForNewCustomers, int standardDeviationForNewCustomers, int meanForServingTime,
+    int standardDeviationForServingTime, int meanForWaitingTolerance, int standardDeviationForWaitingTolerance);
 
 #endif

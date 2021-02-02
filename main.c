@@ -12,16 +12,21 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <errno.h>
 #include "fileManager.h"
 #include "simulation.h"
 
 /* check format fo the command line args - function prototype */
 void verifyCommandLineFormat(int argc, char **argv, int *numSims);
 
+/* Function that takes in error type and outputs the error to stderr - function prototype */
+void errChecker(int err);
 
+/* MAIN FUNCTION */
 int main(int argc, char ** argv)
 {
-	int numSims, maxQueLen, numServicePoints, closingTime, err, maxNewCustomers, minNewCustomers, maxServeTime, maxWaitingTolerance;
+	int numSims, maxQueLen, numServicePoints, closingTime, err, maxNewCustomers, minNewCustomers, maxServeTime, maxWaitingTolerance, distributionType, meanForNewCustomers, standardDeviationForNewCustomers, meanForServingTime, standardDeviationForServingTime, meanForWaitingTolerance, standardDeviationForWaitingTolerance;
+
 	char *inputFileName;
 	char *outputFileName;
 	FILE *fp;
@@ -36,37 +41,12 @@ int main(int argc, char ** argv)
 	outputFileName = argv[3];
 
 	/* read input parameters from the given file */
-	err = getInfoFromInput(inputFileName, &maxQueLen, &numServicePoints, &closingTime, &maxNewCustomers, &minNewCustomers, &maxServeTime, &maxWaitingTolerance);
-
-	if(err == -1)	
-	{
-		printf("Wrong format in input file.\n");
-		exit(-1);
-	}
-
-	if(err == -2)
-	{
-		printf("Parameters in input file must be positive integers. (except minNewCustomers could be 0)\n");
-		exit(-1);
-	}
-
-	if(err == -3)
-	{
-		printf("Failed opening input file.\n");
-		exit(-1);
-	}
-
-	if(err == -4)
-	{
-		printf("Max value lower than min value.\n");
-		exit(-1);
-	}
-
-	if(err == -5)
-	{
-		printf("Max queue length can't be less than -1. Set as -1 only for queue with no limit.\n");
-		exit(-1);
-	}
+	err = getInfoFromInput(inputFileName, &maxQueLen, &numServicePoints, &closingTime, &maxNewCustomers, &minNewCustomers, 
+		&maxServeTime, &maxWaitingTolerance, &distributionType, &meanForNewCustomers, &standardDeviationForNewCustomers, 
+		&meanForServingTime, &standardDeviationForServingTime, &meanForWaitingTolerance, &standardDeviationForWaitingTolerance);
+	
+	/* taking in error number and halt program if errors */	
+	errChecker(err);
 
 	/* redirect output to show results to the given output file */
 	if(freopen(outputFileName, "w", stdout) == NULL)
@@ -76,15 +56,16 @@ int main(int argc, char ** argv)
 	}
 
 	/* print the readed parameters */
-	printReadParameters(maxQueLen,  numServicePoints,  closingTime, maxNewCustomers,  minNewCustomers,  maxServeTime,  maxWaitingTolerance);
+	printReadParameters(maxQueLen,  numServicePoints,  closingTime, maxNewCustomers,  minNewCustomers,  maxServeTime,
+	  maxWaitingTolerance, 	distributionType, meanForNewCustomers, standardDeviationForNewCustomers, meanForServingTime, standardDeviationForServingTime, meanForWaitingTolerance, standardDeviationForWaitingTolerance);
 
 	/* make numSims simulations */
-	runSimulation(numSims, maxQueLen,  numServicePoints,  closingTime, maxNewCustomers,  minNewCustomers,  maxServeTime,  maxWaitingTolerance);
+	runSimulation(numSims, maxQueLen,  numServicePoints,  closingTime, maxNewCustomers,  minNewCustomers,  maxServeTime, maxWaitingTolerance);
 
-	return 0;
+	return EXIT_SUCCESS;
 }
 
-/* check format fo the command line args */
+/* Check format fo the command line args */
 void verifyCommandLineFormat(int argc, char **argv, int *numSims)
 {
 
@@ -111,3 +92,41 @@ void verifyCommandLineFormat(int argc, char **argv, int *numSims)
 	}
 }
 
+/* Function that takes in error type and outputs the error to stderr */
+void errChecker(int err)
+{
+	if(err == -1)	
+	{
+		printf("Wrong format in input file.\n");
+		fprintf(stderr, "Error %d: %s\n", errno, strerror(errno));
+		exit(1);
+	}
+
+	if(err == -2)
+	{
+		printf("Parameters in input file must be positive integers. (except minNewCustomers could be 0)\n");
+		fprintf(stderr, "Error %d: %s\n", errno, strerror(errno));
+		exit(1);
+	}
+
+	if(err == -3)
+	{
+		printf("Failed opening input file.\n");
+		fprintf(stderr, "Error %d: %s\n", errno, strerror(errno));
+		exit(1);
+	}
+
+	if(err == -4)
+	{
+		printf("Max value lower than min value.\n");
+		fprintf(stderr, "Error %d: %s\n", errno, strerror(errno));
+		exit(1);
+	}
+
+	if(err == -5)
+	{
+		printf("Max queue length can't be less than -1. Set as -1 only for queue with no limit.\n");
+		fprintf(stderr, "Error %d: %s\n", errno, strerror(errno));
+		exit(1);
+	}
+}

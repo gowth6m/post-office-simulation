@@ -1,9 +1,19 @@
+# Choose 1 for Gaussian distribution and 0 for Uniform distribution in distributionType
+
 maxQueueLength 10
 numServicePoints 10
 closingTime 100
 
+distributionType 0
+
 maxNewCustomers 5
 minNewCustomers 0
-
 maxServeTime 20
 maxWaitingTolerance 25
+
+meanForNewCustomers 5
+standardDeviationForNewCustomers 2
+meanForServingTime 10
+standardDeviationForServingTime 5
+meanForWaitingTolerance 15
+standardDeviationForWaitingTolerance 2

@@ -1,0 +1,32 @@
+# ------------------------------------------------------------------------
+# Main Settings
+# ------------------------------------------------------------------------
+maxQueueLength 10
+numServicePoints 10
+closingTime 100
+
+# ------------------------------------------------------------------------
+# Put 1 for Gaussian distribution and 0 for Uniform distribution
+# ------------------------------------------------------------------------
+distributionType 1
+
+# ------------------------------------------------------------------------
+# Choose limits if Uniform distribution is chosen
+# ------------------------------------------------------------------------
+maxNewCustomers 5
+minNewCustomers 0
+
+maxServeTime 20
+maxWaitingTolerance 25
+
+# ------------------------------------------------------------------------
+# Choose mean and standard deviation if Gaussian distribution is chosen
+# ------------------------------------------------------------------------
+meanForNewCustomers 5
+standardDeviationForNewCustomers 2
+
+meanForServingTime 10
+standardDeviationForServingTime 5
+
+meanForWaitingTolerance 15
+standardDeviationForWaitingTolerance 2
