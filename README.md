@@ -1,4 +1,4 @@
-# post-office-simulation
+# Post Office Simulation
 A simulation of the customer queuing and being served in a post office.
 
 
