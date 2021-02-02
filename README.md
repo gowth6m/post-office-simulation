@@ -6,9 +6,10 @@ First run the executable compileSim in order to recreate the executable for the 
 ```console
 ./compileSim
 ```
-Now just run the simQ executable with the following parameters - inputFile numberOfSimulations outputFile
+Now just run the simQ executable with the following parameters - inputFile, numberOfSimulations and outputFile
 ```console
 ./simQ testInput.txt 1 testOutput.txt
 ```
+
 ## Diagram of the simulation process
 <img src="https://i.imgur.com/YGu3rWK.png">
