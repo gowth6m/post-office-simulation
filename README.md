@@ -15,7 +15,7 @@ Now just run the simQ executable with the following parameters - inputFile, numb
 <img height="250em" src="https://i.imgur.com/YGu3rWK.png">
 
 ## Input and output file
-<div align="center">
+<div>
 <img height="300em" src="https://i.imgur.com/zNCRal7.png">
 <img height="300em" src="https://i.imgur.com/47UqeY5.png">
 </div>
