@@ -1,10 +1,12 @@
 # Post Office Simulation
 A simulation of the customer queuing and being served in a post office.
 
-## How to run (use python 3):
+## How to run:
+First run the executable compileSim in order to recreate the executable for the main simulation executable.
 ```console
 ./compileSim
 ```
+Now just run the simQ executable with the following <inputFile> <numberOfSimulations> <outputFile>
 ```console
 ./simQ testInput.txt 1 testOutput.txt
 ```
