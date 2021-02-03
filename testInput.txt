@@ -8,7 +8,7 @@ closingTime 100
 # ------------------------------------------------------------------------
 # Put 1 for Gaussian distribution and 0 for Uniform distribution
 # ------------------------------------------------------------------------
-distributionType 1
+distributionType 0
 
 # ------------------------------------------------------------------------
 # Choose limits if Uniform distribution is chosen

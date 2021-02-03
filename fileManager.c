@@ -124,7 +124,7 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
     if(*distributionType > 1 || *distributionType < 0)
     {
         printf("TEST: %d\n", *distributionType);
-        return -2;
+        return -7;
     }
 
     /* read the maxNewCustomers parameter*/

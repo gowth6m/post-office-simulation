@@ -136,4 +136,11 @@ void errChecker(int err)
 		fprintf(stderr, "Error %d: %s\n", errno, strerror(errno));
 		exit(1);
 	}
+
+	if(err == -7)
+	{
+		printf("DistributionType must be either 0 or 1. 0 for uniform & 1 for gaussian.\n");
+		fprintf(stderr, "Error %d: %s\n", errno, strerror(errno));
+		exit(1);
+	}
 }
