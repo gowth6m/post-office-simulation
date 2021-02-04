@@ -2,7 +2,7 @@
 A simulation of the customer queuing and being served in a post office.
 
 ## How to run:
-First run the executable compileSim in order to recreate the executable for the main simulation executable.
+First run the executable compileSim in order to create the executable for the main simulation called simQ.
 ```console
 ./compileSim
 ```
