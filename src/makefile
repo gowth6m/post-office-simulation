@@ -1,12 +1,8 @@
-# the compiler: gcc for C program, define as g++ for C++
+# This makefile is to compile the program just incase the executable from above directory isn't working.
 CC = gcc
 
-# compiler flags:
-#  -g    adds debugging information to the executable file
-#  -Wall turns on most, but not all, compiler warnings
 CFLAGS  = -ansi -g 
 
-# the build target executable:
 TARGET = simQ
 
 OBJS = simulation.o fileManager.o customerQueue.o randGenerator.o
@@ -31,5 +27,3 @@ randGenerator.o: randGenerator.c
 clean:
 	rm $(TARGET)
 	rm $(OBJS)
-
-# gcc -ansi -g -o simQ main.c

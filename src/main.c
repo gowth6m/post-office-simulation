@@ -16,22 +16,24 @@
 #include "fileManager.h"
 #include "simulation.h"
 
-/* check format fo the command line args - function prototype */
+/* Check format fo the command line args - function prototype */
 void verifyCommandLineFormat(int argc, char **argv, int *numSims);
 
 /* Function that takes in error type and outputs the error to stderr - function prototype */
 void errChecker(int err);
 
-/* MAIN FUNCTION */
+/* Main function */
 int main(int argc, char ** argv)
 {
-	int numSims, maxQueLen, numServicePoints, closingTime, err, maxNewCustomers, minNewCustomers, maxServeTime, maxWaitingTolerance, distributionType, meanForNewCustomers, standardDeviationForNewCustomers, meanForServingTime, standardDeviationForServingTime, meanForWaitingTolerance, standardDeviationForWaitingTolerance;
+	int numSims, maxQueLen, numServicePoints, closingTime, err, maxNewCustomers, minNewCustomers, maxServeTime, minServeTime, 
+		maxWaitingTolerance, minWaitingTolerance, distributionType, meanForNewCustomers, standardDeviationForNewCustomers, 
+		meanForServingTime, standardDeviationForServingTime, meanForWaitingTolerance, standardDeviationForWaitingTolerance;
 
 	char *inputFileName;
 	char *outputFileName;
 	FILE *fp;
 
-	/* Set the seed for the pseudo random numbers with uniform distribution */
+	/* set the seed for the pseudo random numbers with uniform distribution */
 	srand(time(NULL));
 
 	/* check format fo the command line args */
@@ -42,8 +44,9 @@ int main(int argc, char ** argv)
 
 	/* read input parameters from the given file */
 	err = getInfoFromInput(inputFileName, &maxQueLen, &numServicePoints, &closingTime, &maxNewCustomers, &minNewCustomers, 
-		&maxServeTime, &maxWaitingTolerance, &distributionType, &meanForNewCustomers, &standardDeviationForNewCustomers, 
-		&meanForServingTime, &standardDeviationForServingTime, &meanForWaitingTolerance, &standardDeviationForWaitingTolerance);
+		&maxServeTime, &minServeTime, &maxWaitingTolerance, &minWaitingTolerance, &distributionType, &meanForNewCustomers, 
+		&standardDeviationForNewCustomers, &meanForServingTime, &standardDeviationForServingTime, &meanForWaitingTolerance, 
+		&standardDeviationForWaitingTolerance);
 	
 	/* taking in error number and halt program if errors */	
 	errChecker(err);
@@ -56,11 +59,14 @@ int main(int argc, char ** argv)
 	}
 
 	/* print the readed parameters */
-	printReadParameters(maxQueLen,  numServicePoints,  closingTime, maxNewCustomers,  minNewCustomers,  maxServeTime,
-		maxWaitingTolerance, distributionType, meanForNewCustomers, standardDeviationForNewCustomers, meanForServingTime, standardDeviationForServingTime, meanForWaitingTolerance, standardDeviationForWaitingTolerance);
+	printReadParameters(maxQueLen,  numServicePoints,  closingTime, maxNewCustomers,  minNewCustomers,  maxServeTime, minServeTime,
+		maxWaitingTolerance, minWaitingTolerance, distributionType, meanForNewCustomers, standardDeviationForNewCustomers, meanForServingTime, 
+		standardDeviationForServingTime, meanForWaitingTolerance, standardDeviationForWaitingTolerance);
 
 	/* make numSims simulations */
-	runSimulation(numSims, maxQueLen,  numServicePoints,  closingTime, maxNewCustomers,  minNewCustomers,  maxServeTime, maxWaitingTolerance, distributionType, meanForNewCustomers, standardDeviationForNewCustomers, meanForServingTime, standardDeviationForServingTime, meanForWaitingTolerance, standardDeviationForWaitingTolerance);
+	runSimulation(numSims, maxQueLen,  numServicePoints,  closingTime, maxNewCustomers,  minNewCustomers,  maxServeTime, minServeTime, 
+		maxWaitingTolerance, minWaitingTolerance, distributionType, meanForNewCustomers, standardDeviationForNewCustomers, meanForServingTime, 
+		standardDeviationForServingTime, meanForWaitingTolerance, standardDeviationForWaitingTolerance);
 
 	return EXIT_SUCCESS;
 }

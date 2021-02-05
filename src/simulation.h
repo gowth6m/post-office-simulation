@@ -13,7 +13,8 @@
 
 /* Main function to run all the simulations (numSims) and prints the results */
 void runSimulation(int numSims, int maxQueLen, int numServicePoints, int closingTime, int maxNewCustomers, int minNewCustomers, 
-    int maxServeTime, int maxWaitingTolerance, int distributionType, int meanForNewCustomers, int standardDeviationForNewCustomers,
-    int meanForServingTime, int standardDeviationForServingTime, int meanForWaitingTolerance, int standardDeviationForWaitingTolerance);
+    int maxServeTime, int minServeTime, int maxWaitingTolerance, int minWaitingTolerance, int distributionType, int meanForNewCustomers, 
+    int standardDeviationForNewCustomers, int meanForServingTime, int standardDeviationForServingTime, int meanForWaitingTolerance, 
+    int standardDeviationForWaitingTolerance);
 
 #endif

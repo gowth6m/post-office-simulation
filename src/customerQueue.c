@@ -15,12 +15,11 @@
 /* A utility function to create a new linked list node. */
 CustomerNode* newNode(int key_, int waitTolerance, int serveTime) 
 { 
-	/* Allocation of memory for the new node */
+	/* allocation of memory for the new node */
     CustomerNode* temp = (CustomerNode*) malloc(sizeof(CustomerNode));
     /* verify allocation of memory */
     if(temp == NULL)
 	{
-    	/* Error No Memory available */
     	return NULL;
     }
 
@@ -41,7 +40,6 @@ Queue* createQueue()
     /* verify allocation of memory */
     if(q == NULL)
 	{
-    	/* Error No Memory available */
     	return NULL;
     }
 
@@ -56,23 +54,23 @@ int enQueue(Queue* q, int k, int waitTolerance, int serveTime)
 { 
 	CustomerNode* temp;	/* New customer node */
 
-    /* Create a new LL node */
+    /* create a new LL node */
     temp = newNode(k, waitTolerance, serveTime);
     /* verify allocation of memory */
     if(temp == NULL)
 	{
-    	/* Error No Memory available */
+    	/* error no memory available */
     	return -1;
     }
 
-    /* If queue is empty, then new node is front and rear both */
+    /* ff queue is empty, then new node is front and rear both */
     if (queueEmpty(q)) {
         q->front = q->rear = temp;
         q->queueLength++;
         return 0; 
     } 
   
-    /* Add the new node at the end of queue and change rear */
+    /* add the new node at the end of queue and change rear */
     q->rear->next = temp; 
     q->rear = temp; 
     q->queueLength++;
@@ -80,7 +78,7 @@ int enQueue(Queue* q, int k, int waitTolerance, int serveTime)
     return 0;
 } 
   
-/* Function to remove a key from given queue q */
+/* Function to remove front node from given queue q */
 void deQueue(Queue* q) 
 { 
     /* If queue is empty, return. */
@@ -89,19 +87,19 @@ void deQueue(Queue* q)
         return; 
 	}
   
-    /* Store previous front and move front one node ahead */
+    /* store previous front and move front one node ahead */
     CustomerNode* temp = q->front; 
     q->front = q->front->next; 
   
-    /* If front becomes NULL, then change rear also as NULL */
+    /* if front becomes NULL, then change rear also as NULL */
     if (q->front == NULL)
 	{
         q->rear = NULL; 
 	}
 
     q->queueLength--;
-    free(temp);
 
+    free(temp);
 }
 
 /* Function to get the length of the queue */
@@ -128,7 +126,7 @@ int getTimedOutCustomers(Queue * q)
 	/* iterate over the customers in the queue with this loop */
 	while(iterator != NULL){
 
-		/* If the current customer in iterator is timed-out then delete it from the queue. */
+		/* if the current customer in iterator is timed-out then delete it from the queue. */
 		if(iterator->timeSpentInQueue >= iterator->waitingToleranceLimit)
 		{
 			/* if it was the first node in the list */

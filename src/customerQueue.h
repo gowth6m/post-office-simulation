@@ -36,11 +36,10 @@ CustomerNode* newNode(int key_, int waitTolerance, int serveTime);
 /* A utility function to create an empty queue */
 Queue* createQueue();
 
-  
 /* The function to add a key k to q */
 int enQueue(Queue* q, int k, int waitTolerance, int serveTime);
 
-/* Function to remove a key from given queue q */
+/* Function to remove front node from given queue q */
 void deQueue(Queue* q);
 
 /* Function to get the length of the queue */

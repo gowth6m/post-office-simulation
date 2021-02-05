@@ -1,7 +1,7 @@
 /*
 * File:         customerQueue.c
 *
-* Description:  Implementation of some functions to read the input from the input file.
+* Description:  Implementation of some functions to read the input from the input file and verify them.
 *
 * Autor:        Gowthaman Ravindrathas
 *
@@ -40,11 +40,11 @@ int readParameter(FILE * fp, char * parameterName, int * parameter)
             break;
         }
 
-        /* otherwise ignore this line  */
+        /* otherwise ignore the line  */
         fscanf(fp, "%*[^\n]\n");
     }
 
-    /* read the parameter*/
+    /* read the parameter */
     if(fscanf(fp, "%s %d", (s+1), parameter) < 2)
     {
         return -1;
@@ -61,8 +61,9 @@ int readParameter(FILE * fp, char * parameterName, int * parameter)
 
 /* Function to read all the parameters from the input file */
 int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int *closingTime, int *maxNewCustomers, int *minNewCustomers, 
-    int *maxServeTime, int *maxWaitingTolerance, int *distributionType, int *meanForNewCustomers, int *standardDeviationForNewCustomers, 
-    int *meanForServingTime, int *standardDeviationForServingTime, int *meanForWaitingTolerance, int *standardDeviationForWaitingTolerance) 
+    int *maxServeTime, int *minServeTime, int *maxWaitingTolerance, int *minWaitingTolerance, int *distributionType, int *meanForNewCustomers, 
+    int *standardDeviationForNewCustomers, int *meanForServingTime, int *standardDeviationForServingTime, int *meanForWaitingTolerance, 
+    int *standardDeviationForWaitingTolerance) 
 {
     /* Pointer to the file */
     FILE *fp;
@@ -100,7 +101,7 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
         return -2;
     }
     
-    /* read the closingTime parameter*/
+    /* read the closingTime parameter */
     if(readParameter(fp, "closingTime", closingTime) == -1)
     {
         /*wrong input file format*/
@@ -127,7 +128,7 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
         return -7;
     }
 
-    /* read the maxNewCustomers parameter*/
+    /* read the maxNewCustomers parameter */
     if(readParameter(fp, "maxNewCustomers", maxNewCustomers) == -1)
     {
         /*wrong input file format*/
@@ -140,7 +141,7 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
         return -2;
     }
 
-    /* read the minNewCustomers parameter*/
+    /* read the minNewCustomers parameter */
     if(readParameter(fp, "minNewCustomers", minNewCustomers) == -1)
     {
         /*wrong input file format*/
@@ -159,7 +160,7 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
         return -4;
     }
 
-    /* read the maxServeTime parameter*/
+    /* read the maxServeTime parameter */
     if(readParameter(fp, "maxServeTime", maxServeTime) == -1)
     {
         /*wrong input file format*/
@@ -170,6 +171,25 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
     if(*maxServeTime <= 0)
     {
         return -2;
+    }
+
+    /* read the minServeTime parameter */
+    if(readParameter(fp, "minServeTime", minServeTime) == -1)
+    {
+        /*wrong input file format*/
+        return -1;
+    }
+
+    /* Check parameter is positive */
+    if(*minServeTime <= 0)
+    {
+        return -2;
+    }
+
+    /* Check that max isn't lower than min value */
+    if(*maxServeTime < *minServeTime)
+    {
+        return -4;
     }
 
     /* read the maxWaitingTolerance parameter */
@@ -183,6 +203,25 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
     if(*maxWaitingTolerance <= 0)
     {
         return -2;
+    }
+
+    /* read the maxServeTime parameter */
+    if(readParameter(fp, "minWaitingTolerance", minWaitingTolerance) == -1)
+    {
+        /*wrong input file format*/
+        return -1;
+    }
+
+    /* Check parameter is positive */
+    if(*minWaitingTolerance <= 0)
+    {
+        return -2;
+    }
+
+    /* Check that max isn't lower than min value */
+    if(*maxWaitingTolerance < *minWaitingTolerance)
+    {
+        return -4;
     }
 
     /* read the meanForNewCustomers parameter */
@@ -243,7 +282,6 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
         return -6;
     }
 
-
     /* close the file */
     fclose(fp);
     return 0;
@@ -251,8 +289,8 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
 
 /* Function to print the readed parameters */
 void printReadParameters(int maxQueLen, int numServicePoints, int closingTime, int maxNewCustomers, int minNewCustomers, int maxServeTime,
-    int maxWaitingTolerance, int distributionType, int meanForNewCustomers, int standardDeviationForNewCustomers, int meanForServingTime,
-    int standardDeviationForServingTime, int meanForWaitingTolerance, int standardDeviationForWaitingTolerance)
+    int minServeTime, int maxWaitingTolerance, int minWaitingTolerance, int distributionType, int meanForNewCustomers, int standardDeviationForNewCustomers, 
+    int meanForServingTime, int standardDeviationForServingTime, int meanForWaitingTolerance, int standardDeviationForWaitingTolerance)
 {   
     /* Printing for Uniform distribution */
     if(distributionType == 0)
@@ -266,7 +304,9 @@ void printReadParameters(int maxQueLen, int numServicePoints, int closingTime, i
         printf("maxNewCustomers %d\n", maxNewCustomers);
         printf("minNewCustomers %d\n", minNewCustomers);
         printf("maxServeTime %d\n", maxServeTime);
+        printf("minServeTime %d\n", minServeTime);
         printf("maxWaitingTolerance %d\n", maxWaitingTolerance);
+        printf("minWaitingTolerance %d\n", minWaitingTolerance);
     }
     /* Printing for Gaussian distribution */
     if(distributionType == 1)

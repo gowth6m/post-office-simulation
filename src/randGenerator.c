@@ -37,13 +37,13 @@ long double getGaussianRandNum (long double mi, long double sigma)
 
     v1 = ((long double) rand() / (RAND_MAX)) * 2 - 1;
     v2 = ((long double) rand() / (RAND_MAX)) * 2 - 1;
-    s = v1*v1 + v2*v2;
+    s = v1 * v1 + v2 * v2;
 
     if (s == 0 || s >= 1) 
     {
         return getGaussianRandNum (mi, sigma);
     }
 
-    result = v1*sqrt(-2.0* log(s)/s);
-    return (mi+result*sigma);
+    result = v1 * sqrt(-2.0 * log(s)/s);
+    return (mi + result * sigma);
 }
