@@ -19,14 +19,11 @@ FINAL RESULTS:
 
 Averages:
 
-Fulfilled customers: 105.02
-Unfulfilled customers: 112.67
-Timed-out customers: 31.32
-Fulfilled customers: 105
-Unfulfilled customers: 112
-Timed-out customers: 31
+Fulfilled customers: 104.99
+Unfulfilled customers: 112.54
+Timed-out customers: 31.28
 
-Time it took from closing time until all remaining customers were served: 22.89
+Time it took from closing time until all remaining customers were served: 22.92
 
 Average waiting time (in the queue) for fulfilled customers: 6.22
 
