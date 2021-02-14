@@ -3,7 +3,7 @@
 *
 * Description:  Main function of the post office simulator.
 *
-* Autor: 		Gowthaman Ravindrathas
+* Autor: 		gowth6m
 *
 * Date:			27.01.2021
 */
@@ -15,11 +15,10 @@
 #include <errno.h>
 #include "fileManager.h"
 #include "simulation.h"
+#include "randGenerator.h"
 
-/* Check format fo the command line args - function prototype */
+/* Function prototypes */
 void verifyCommandLineFormat(int argc, char **argv, int *numSims);
-
-/* Function that takes in error type and outputs the error to stderr - function prototype */
 void errChecker(int err);
 
 /* Main function */
@@ -42,7 +41,7 @@ int main(int argc, char ** argv)
 	inputFileName = argv[1];
 	outputFileName = argv[3];
 
-	/* read input parameters from the given file */
+	/* read input parameters from the given file & get error number */
 	err = getInfoFromInput(inputFileName, &maxQueLen, &numServicePoints, &closingTime, &maxNewCustomers, &minNewCustomers, 
 		&maxServeTime, &minServeTime, &maxWaitingTolerance, &minWaitingTolerance, &distributionType, &meanForNewCustomers, 
 		&standardDeviationForNewCustomers, &meanForServingTime, &standardDeviationForServingTime, &meanForWaitingTolerance, 
@@ -54,7 +53,7 @@ int main(int argc, char ** argv)
 	/* redirect output to show results to the given output file */
 	if(freopen(outputFileName, "w", stdout) == NULL)
 	{
-		fprintf(stderr, "Failed opening file: %s, error %d: %s %s\n", outputFileName, errno, strerror(errno));
+		fprintf(stderr, "Failed opening file: %s, error %d: %s\n", outputFileName, errno, strerror(errno));
 		exit(-1);
 	}
 
@@ -75,7 +74,7 @@ int main(int argc, char ** argv)
 void verifyCommandLineFormat(int argc, char **argv, int *numSims)
 {
 
-	/* verify format */
+	/* verify format of stdin from command line */
 	if(argc != 4)
 	{
 		fprintf(stderr, "Invalid format. The correcct format is:\n./simQ <fileIn> <numSims> <fileOut>\n");
@@ -85,7 +84,7 @@ void verifyCommandLineFormat(int argc, char **argv, int *numSims)
 	/* extract number of simulations */
 	(*numSims) = atoi(argv[2]);
 
-	/* verify format */
+	/* verify format of stdin from command line */
 	if((*numSims) == 0 && strcmp(argv[2],"0"))
 	{
 		fprintf(stderr, "Invalid format. The number of simulations must be a positive integer.\n");
@@ -139,7 +138,13 @@ void errChecker(int err)
 
 	if(err == -7)
 	{
-		fprintf(stderr, "DistributionType must be either 0 or 1. 0 for uniform & 1 for gaussian.\n");
+		fprintf(stderr, "DistributionType must be either 0 or 1 where 0 for uniform & 1 for gaussian.\n");
+		exit(1);
+	}
+
+	if(err == -8)
+	{
+		fprintf(stderr, "Standard deviation cannot be negative.\n");
 		exit(1);
 	}
 }

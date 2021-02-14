@@ -3,7 +3,7 @@
 *
 * Description:  Implementation of some functions to read the input from the input file and verify them. header file
 *
-* Autor: 		Gowthaman Ravindrathas
+* Autor: 		gowth6m
 *
 * Date:			30.01.2021
 */
@@ -17,7 +17,7 @@ int getInfoFromInput(char *fileName, int *maxQueLen, int *numServicePoints, int 
     int *distributionType, int *meanForNewCustomers, int *standardDeviationForNewCustomers, int *meanForServingTime, 
     int *standardDeviationForServingTime, int *meanForWaitingTolerance, int *standardDeviationForWaitingTolerance);
 
-/*Function to print the read parameters */
+/* Function to print the read parameters */
 void printReadParameters(int maxQueLen, int numServicePoints, int closingTime, int maxNewCustomers, int minNewCustomers, 
     int maxServeTime, int minServeTime, int maxWaitingTolerance, int minWaitingTolerance, int distributionType, 
     int meanForNewCustomers, int standardDeviationForNewCustomers, int meanForServingTime, int standardDeviationForServingTime, 

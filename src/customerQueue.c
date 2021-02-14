@@ -3,7 +3,7 @@
 *
 * Description:  Linked list based implementation of customer queue.
 *
-* Autor: 		Gowthaman Ravindrathas
+* Autor: 		gowth6m
 *
 * Date:			27.01.2021
 */
@@ -151,11 +151,9 @@ int getTimedOutCustomers(Queue * q)
 				}
 			}
 
-			/* save the pointer and continue the iteration */
+			/* save the pointer and continue the iteration and free mem */
 			temp = iterator;
 			iterator = iterator->next;
-
-			/* free the node */
 			free(temp);
 
 			/* decrese the length of the queue and count the timed-out customer */

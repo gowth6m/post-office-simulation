@@ -3,7 +3,7 @@
 *
 * Description:  Post office simulation implementation.
 *
-* Autor:        Gowthaman Ravindrathas
+* Autor:        gowth6m
 *
 * Date:         27.01.2021
 */
@@ -34,26 +34,28 @@ void addCustomers(Queue *queue, int maxQueLen, int maxNewCustomers, int minNewCu
 {
     int i, toleranceTime, serveTime, noOfCustomers;
 
-    if(distributionType == 1) /* for Gaussian distribution */
+    /* getting a random number of customers from chosen distribution */
+    if(distributionType == 1)
     {
         noOfCustomers = getGaussianRandNum(meanForNewCustomers, standardDeviationForNewCustomers);
     }
     else
     {
-        noOfCustomers = getUniformRandNum(minNewCustomers, maxNewCustomers); /* getting random number of customers to add */
+        noOfCustomers = getUniformRandNum(minNewCustomers, maxNewCustomers);
     }
     
+    /* for each customer setting a random tolerance and serve time from chosen distribution */
     for (i = 0; i < noOfCustomers; i++)
     {
-        if(distributionType == 1) /* for Gaussian distribution */
+        if(distributionType == 1)
         {
             toleranceTime = getGaussianRandNum(meanForWaitingTolerance, standardDeviationForWaitingTolerance);
-            serveTime = getGaussianRandNum(meanForServingTime, standardDeviationForServingTime); 
+            serveTime = getGaussianRandNum(meanForServingTime, standardDeviationForServingTime);
         }
-        else /* for Uniform distribution */
+        else
         {
-            toleranceTime = getUniformRandNum(minWaitingTolerance, maxWaitingTolerance); /* customer's tolerance to waiting */
-            serveTime = getUniformRandNum(minServeTime, maxServeTime);                   /* time taken to serve the customer */
+            toleranceTime = getUniformRandNum(minWaitingTolerance, maxWaitingTolerance);
+            serveTime = getUniformRandNum(minServeTime, maxServeTime);
         }
 
         /* if there is space in the queue for the new customer, then add new customer, else it will be an unfulfilled customer. */
@@ -97,8 +99,10 @@ int serveCustomer(Queue *queue, int servicePointArr[], int numServicePoints, int
             /* calculating time when to free up the serving point*/
             int finishServingTime = timer + queue->front->timeTakenToServe;
             servicePointArr[i] = finishServingTime;
+
             /* add the time spent in the queue of this customer */
             totalQueueWaitTime += queue->front->timeSpentInQueue;
+
             /* remove the customer from queue */
             deQueue(queue);
         }
@@ -116,42 +120,41 @@ int serveCustomer(Queue *queue, int servicePointArr[], int numServicePoints, int
     return numCurBeingServed;
 }
 
-/* Function that does the main time loop for dealingn with customers in one simulation */
-void loopForManagingCustomers(int closingTime, int numServicePoints, int maxQueLen, int maxNewCustomers, int minNewCustomers, 
+/* Function that does the main time loop for dealing with customers in one simulation */
+void simulationLoop(int closingTime, int numServicePoints, int maxQueLen, int maxNewCustomers, int minNewCustomers, 
     int maxServeTime, int minServeTime, int maxWaitingTolerance, int minWaitingTolerance, int distributionType, int meanForNewCustomers, 
     int standardDeviationForNewCustomers, int meanForServingTime, int standardDeviationForServingTime, int meanForWaitingTolerance, 
     int standardDeviationForWaitingTolerance, int singleSim)
 {
 
     int i, timer, numCurBeingServed, maxTimeInServPoint = 0, timeleft = 0;
-    /* Array to simulate the service points */
-    int servicePointArr[numServicePoints];
+    int servicePointArr[numServicePoints]; /* array that simulates service points */
 
-    /* Creating the customer queue */
+    /* creating the customer queue */
     Queue *queue = createQueue();
 
-    /* Initialize the customers related counters */
+    /* initialize the customers related counters */
     fulfilledCustomers = 0;
     unfulfilledCustomers = 0;
     timedOutCustomers = 0;
     nextId = 0;
     totalQueueWaitTime = 0;
 
-    /* Initialize the service points, where 0 means not occupied */
+    /* tnitialize the service points, where 0 means not occupied */
     for (i = 0; i < numServicePoints; i++)
         servicePointArr[i] = 0;
 
-    /* This loop runs until closing time, represents the countdown clock until closing time */
+    /* this loop runs until closing time, represents the countdown clock until closing time */
     for (timer = 0; (timer < closingTime) || !queueEmpty(queue) || (timer < maxTimeInServPoint); timer++)
     {
 
-        /*fulfilled customers leave the system, then available service points serve the first customers in the queue */
+        /* fulfilled customers leave the system, then available service points serve the first customers in the queue */
         numCurBeingServed = serveCustomer(queue, servicePointArr, numServicePoints, timer, &maxTimeInServPoint);
 
         /* update customer tolerance and remove if exceeded */
         timedOutCustomers += getTimedOutCustomers(queue);
 
-        /*Adding random number of customers every time interval */
+        /* adding random number of customers every time interval */
         if (timer < closingTime)
         {
             addCustomers(queue, maxQueLen, maxNewCustomers, minNewCustomers, maxServeTime, minServeTime, maxWaitingTolerance, 
@@ -194,7 +197,7 @@ void loopForManagingCustomers(int closingTime, int numServicePoints, int maxQueL
     avgTimeleft += timeleft;
     avgQueueWaitTime += totalQueueWaitTime;
 
-    /* Free the empty queue */
+    /* free the empty queue */
     free(queue);
 }
 
@@ -217,7 +220,7 @@ void runSimulation(int numSims, int maxQueLen, int numServicePoints, int closing
     /* run the numSims simulations */
     for (i = 0; i < numSims; i++)
     {
-        loopForManagingCustomers(closingTime, numServicePoints, maxQueLen, maxNewCustomers, minNewCustomers, maxServeTime, 
+        simulationLoop(closingTime, numServicePoints, maxQueLen, maxNewCustomers, minNewCustomers, maxServeTime, 
             minServeTime, maxWaitingTolerance, minWaitingTolerance, distributionType, meanForNewCustomers, standardDeviationForNewCustomers, 
             meanForServingTime, standardDeviationForServingTime, meanForWaitingTolerance, standardDeviationForWaitingTolerance, singleSim);
     }

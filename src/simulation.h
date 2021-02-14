@@ -3,7 +3,7 @@
 *
 * Description:  Post office simulation implementation. Header file.
 *
-* Autor: 		Gowthaman Ravindrathas
+* Autor: 		gowth6m
 *
 * Date:			27.01.2021
 */

@@ -3,7 +3,7 @@
 *
 * Description:  Linked list based implementation of customer queue. Header file.
 *
-* Autor: 		Gowthaman Ravindrathas
+* Autor: 		gowth6m
 *
 * Date:			27.01.2021
 */

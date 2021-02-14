@@ -1,8 +1,8 @@
 # ------------------------------------------------------------------------
 # Main Settings
 # ------------------------------------------------------------------------
-maxQueueLength 10
-numServicePoints 10
+maxQueueLength 20
+numServicePoints 5
 closingTime 100
 
 # ------------------------------------------------------------------------
@@ -17,19 +17,19 @@ maxNewCustomers 5
 minNewCustomers 0
 
 maxServeTime 20
-minServeTime 1
+minServeTime 5
 
-maxWaitingTolerance 25
-minWaitingTolerance 1
+maxWaitingTolerance 50
+minWaitingTolerance 10
 
 # ------------------------------------------------------------------------
 # Choose mean and standard deviation if Gaussian distribution is chosen
 # ------------------------------------------------------------------------
 meanForNewCustomers 5
-standardDeviationForNewCustomers 2
+standardDeviationForNewCustomers 4
 
 meanForServingTime 10
 standardDeviationForServingTime 5
 
-meanForWaitingTolerance 15
-standardDeviationForWaitingTolerance 5
+meanForWaitingTolerance 25
+standardDeviationForWaitingTolerance 10
