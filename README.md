@@ -17,5 +17,7 @@ Now just run the simQ executable with the following parameters - inputFile, numb
 <img height="300em" src="https://i.imgur.com/47UqeY5.png">
 </div>
 
+<!--
 ## Diagram of the simulation process
 <img height="250em" src="https://i.imgur.com/YGu3rWK.png">
+-->
